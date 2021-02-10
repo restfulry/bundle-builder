@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import "./App.css";
 
 import LoginPage from "../LoginPage/LoginPage";
+import LogoutPage from "../LogoutPage/LogoutPage";
 import SignupPage from "../SignupPage/SignupPage";
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <LoginPage />
+        <LogoutPage />
         <SignupPage />
       </div>
     );

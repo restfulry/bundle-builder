@@ -8,6 +8,8 @@ import SignupPage from "../SignupPage/SignupPage";
 
 import userService from "../../utils/userService";
 
+import NavBar from "../../components/NavBar/NavBar";
+
 class App extends Component {
   constructor() {
     super();
@@ -33,17 +35,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Link to="/login" className="NavBar-link">
-          LOG IN
-        </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="/signup" className="NavBar-link">
-          SIGN UP
-        </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="" className="NavBar-link" onClick={this.handleLogout}>
-          LOG OUT
-        </Link>
+        <NavBar user={this.state.user} handleLogout={this.handleLogout} />
+
         <Route
           exact
           path="/signup"

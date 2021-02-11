@@ -21,6 +21,10 @@ class App extends Component {
     return {};
   }
 
+  handleSignupOrLogin = () => {
+    this.setState({ user: userService.getUser() });
+  };
+
   render() {
     return (
       <div className="App">

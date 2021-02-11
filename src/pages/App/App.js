@@ -39,8 +39,20 @@ class App extends Component {
         <Link to="/logout" className="NavBar-link">
           LOG OUT
         </Link>
-        <Route exact path="/signup" render={({ history }) => <SignupPage />} />
-        <Route exact path="/login" render={({ history }) => <LoginPage />} />
+        <Route
+          exact
+          path="/signup"
+          render={({ history }) => (
+            <SignupPage handleSignupOrLogin={this.handleSignupOrLogin} />
+          )}
+        />
+        <Route
+          exact
+          path="/login"
+          render={({ history }) => (
+            <LoginPage handleSignupOrLogin={this.handleSignupOrLogin} />
+          )}
+        />
         <Route exact path="/logout" render={({ history }) => <LogoutPage />} />
       </div>
     );

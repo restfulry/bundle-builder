@@ -6,7 +6,21 @@ import LoginPage from "../LoginPage/LoginPage";
 import LogoutPage from "../LogoutPage/LogoutPage";
 import SignupPage from "../SignupPage/SignupPage";
 
+import userService from "../../utils/userService";
+
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      ...this.getInitialState(),
+      user: userService.getUser(),
+    };
+  }
+
+  getInitialState() {
+    return {};
+  }
+
   render() {
     return (
       <div className="App">

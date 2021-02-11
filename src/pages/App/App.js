@@ -25,6 +25,11 @@ class App extends Component {
     this.setState({ user: userService.getUser() });
   };
 
+  handleLogout = () => {
+    userService.logout();
+    this.setState({ user: null });
+  };
+
   render() {
     return (
       <div className="App">
@@ -36,7 +41,7 @@ class App extends Component {
           SIGN UP
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="/logout" className="NavBar-link">
+        <Link to="" className="NavBar-link" onClick={this.handleLogout}>
           LOG OUT
         </Link>
         <Route

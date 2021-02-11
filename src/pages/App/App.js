@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import "./App.css";
 
 import LoginPage from "../LoginPage/LoginPage";
@@ -10,9 +10,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <LoginPage />
-        <LogoutPage />
-        <SignupPage />
+        <Link to="/login" className="NavBar-link">
+          LOG IN
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="/signup" className="NavBar-link">
+          SIGN UP
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="/logout" className="NavBar-link">
+          LOG OUT
+        </Link>
+        <Route exact path="/signup" render={({ history }) => <SignupPage />} />
+        <Route exact path="/login" render={({ history }) => <LoginPage />} />
+        <Route exact path="/logout" render={({ history }) => <LogoutPage />} />
       </div>
     );
   }

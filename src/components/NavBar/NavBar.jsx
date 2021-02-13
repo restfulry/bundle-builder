@@ -5,6 +5,7 @@ import './NavBar.css';
 const NavBar = ({user, handleLogout}) => {
   let nav = user ?
     <div>
+      <Link to="/products/new">Add New Product</Link>
       <Link to="" className="NavBar-link" onClick={handleLogout}>
       LOG OUT
       </Link>

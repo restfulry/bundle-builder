@@ -6,6 +6,9 @@ const NavBar = ({user, handleLogout}) => {
   let nav = user ?
     <div>
       <Link to="/products/new">Add New Product</Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <Link to="/products">View Products</Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="" className="NavBar-link" onClick={handleLogout}>
       LOG OUT
       </Link>

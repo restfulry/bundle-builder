@@ -10,6 +10,7 @@ import userService from "../../utils/userService";
 
 import NavBar from "../../components/NavBar/NavBar";
 import AddProductPage from "../AddProductPage/AddProductPage";
+import ProductIndexPage from "../ProductIndexPage/ProductIndexPage";
 
 class App extends Component {
   constructor() {
@@ -38,6 +39,16 @@ class App extends Component {
       <div className="App">
         <Switch></Switch>
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
+        <Route
+          exact
+          path="/products"
+          render={() => (
+            <ProductIndexPage
+              handleDeleteProduct={this.handleDeleteProduct}
+              products={this.state.products}
+            />
+          )}
+        />
         <Route exact path="/products/new" render={() => <AddProductPage />} />
         <Route
           exact

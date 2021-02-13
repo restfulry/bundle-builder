@@ -34,6 +34,16 @@ class App extends Component {
     this.setState({ user: null });
   };
 
+  handleDeleteProduct = async (id) => {
+    await productAPI.deleteOne(id);
+    this.setState(
+      (state) => ({
+        products: state.products.filter((p) => p._id !== id),
+      }),
+      () => this.props.history.push("/")
+    );
+  };
+
   render() {
     return (
       <div className="App">

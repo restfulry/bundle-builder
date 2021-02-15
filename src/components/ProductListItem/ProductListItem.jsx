@@ -5,7 +5,7 @@ function ProductListItem({product, handleDeleteProduct}) {
   return (
     <div className='panel'>
       <div className="panel-heading">
-        <Link className='btn' to={{pathname:'/details', state: {product}}}>
+        <Link className='btn' to={{pathname:'/product/details', state: {product}}}>
         <h3 className="panel-title">{product.productName}</h3>
         </Link>      
       </div>

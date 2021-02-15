@@ -18,7 +18,7 @@ function ProductCard({product}) {
         </dl>
       </div>
       <div className='panel-footer'>
-        <Link to='/'>RETURN TO LIST</Link>
+        <Link to='/products'>RETURN TO PRODUCTS</Link>
       </div>
     </div>
   );

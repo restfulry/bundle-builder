@@ -94,7 +94,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/details"
+            path="/product/details"
             render={({ location }) => <ProductDetailPage location={location} />}
           />
           <Route

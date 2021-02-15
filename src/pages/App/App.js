@@ -49,6 +49,19 @@ class App extends Component {
     );
   };
 
+  handleUpdateProduct = async (updatedProductData) => {
+    const updatedProduct = await productsAPI.update(updatedProductData);
+    const newProductsArray = this.state.products.map((p) =>
+      p._id === updatedProduct._id ? updatedProduct : p
+    );
+    this.setState(
+      {
+        products: newProductsArray,
+      },
+      () => this.props.history.push("/products")
+    );
+  };
+
   handleDeleteProduct = async (id) => {
     await productsAPI.deleteOne(id);
     this.setState(

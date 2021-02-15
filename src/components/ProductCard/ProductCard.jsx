@@ -12,7 +12,7 @@ function ProductCard({product}) {
           <dt>Description</dt>
           <dd>{product.description}</dd>
           <dt>Price</dt>
-          <dd>{product.price}</dd>
+          <dd>${product.price}</dd>
           <dt>Tags</dt>
           <dd>{product.tags}</dd>
         </dl>

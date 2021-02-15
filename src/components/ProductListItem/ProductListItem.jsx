@@ -5,9 +5,12 @@ function ProductListItem({product, handleDeleteProduct, handleUpdateProduct}) {
   return (
     <div className='panel'>
       <div className="panel-heading">
+      <h3 className="panel-title">
         <Link className='btn' to={{pathname:'/product/details', state: {product}}}>
-        <h3 className="panel-title">{product.productName}</h3>
-        </Link>      
+          {product.productName}
+        </Link>     
+          &nbsp;&nbsp;|&nbsp;&nbsp; ${product.price}  
+      </h3>
       </div>
       <div className="panel-footer">
         <Link className='btn' to={{pathname:'/product/edit', state: {product, handleUpdateProduct}}}>Edit</Link>

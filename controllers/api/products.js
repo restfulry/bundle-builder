@@ -16,7 +16,7 @@ async function create(req, res) {
 }
 
 async function deleteOne(req, res) {
-  const deletedProduct = await Puppy.findByIdAndRemove(req.params.id);
+  const deletedProduct = await Product.findByIdAndRemove(req.params.id);
   res.status(200).json(deletedProduct);
 }
 

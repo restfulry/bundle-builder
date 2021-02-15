@@ -30,6 +30,15 @@ class App extends Component {
     };
   }
 
+  handleSignupOrLogin = () => {
+    this.setState({ user: userService.getUser() });
+  };
+
+  handleLogout = () => {
+    userService.logout();
+    this.setState({ user: null });
+  };
+
   handleAddProduct = async (newProductData) => {
     const newProduct = await productsAPI.create(newProductData);
     this.setState(
@@ -40,22 +49,13 @@ class App extends Component {
     );
   };
 
-  handleSignupOrLogin = () => {
-    this.setState({ user: userService.getUser() });
-  };
-
-  handleLogout = () => {
-    userService.logout();
-    this.setState({ user: null });
-  };
-
   handleDeleteProduct = async (id) => {
     await productsAPI.deleteOne(id);
     this.setState(
       (state) => ({
         products: state.products.filter((p) => p._id !== id),
       }),
-      () => this.props.history.push("/")
+      () => this.props.history.push("/products")
     );
   };
 
@@ -63,8 +63,6 @@ class App extends Component {
 
   async componentDidMount() {
     const products = await productsAPI.getAll();
-    console.log("Component Did Mount - Products: ", products);
-    console.log("Component Did Mount - history: ", this.props);
     this.setState({ products });
   }
 
@@ -81,7 +79,6 @@ class App extends Component {
                 handleDeleteProduct={this.handleDeleteProduct}
                 products={this.state.products}
                 user={this.state.user}
-                location={this.location}
               />
             )}
           />

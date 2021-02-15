@@ -4,16 +4,18 @@ import "./App.css";
 
 import * as productsAPI from "../../services/products-api";
 
+import NavBar from "../../components/NavBar/NavBar";
+
 import LoginPage from "../LoginPage/LoginPage";
 import LogoutPage from "../LogoutPage/LogoutPage";
 import SignupPage from "../SignupPage/SignupPage";
 
 import userService from "../../utils/userService";
 
-import NavBar from "../../components/NavBar/NavBar";
 import AddProductPage from "../AddProductPage/AddProductPage";
 import ProductIndexPage from "../ProductIndexPage/ProductIndexPage";
 import ProductDetailPage from "../ProductDetailPage/ProductDetailPage";
+import EditProductPage from "../EditProductPage/EditProductPage";
 
 class App extends Component {
   constructor() {
@@ -89,6 +91,7 @@ class App extends Component {
             path="/products"
             render={({ props }) => (
               <ProductIndexPage
+                handleUpdateProduct={this.handleUpdateProduct}
                 handleDeleteProduct={this.handleDeleteProduct}
                 products={this.state.products}
                 user={this.state.user}
@@ -110,6 +113,18 @@ class App extends Component {
             path="/product/details"
             render={({ location }) => <ProductDetailPage location={location} />}
           />
+
+          <Route
+            exact
+            path="/product/edit"
+            render={({ location }) => (
+              <EditProductPage
+                handleUpdateProduct={this.handleUpdateProduct}
+                location={location}
+              />
+            )}
+          />
+
           <Route
             exact
             path="/signup"

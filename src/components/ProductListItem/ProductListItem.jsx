@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-function ProductListItem({product, handleDeleteProduct}) {
+function ProductListItem({product, handleDeleteProduct, handleUpdateProduct}) {
   return (
     <div className='panel'>
       <div className="panel-heading">
@@ -10,7 +10,7 @@ function ProductListItem({product, handleDeleteProduct}) {
         </Link>      
       </div>
       <div className="panel-footer">
-        <Link className='btn' to={{pathname:'/edit', state: {product}}}>Edit</Link>
+        <Link className='btn' to={{pathname:'/product/edit', state: {product, handleUpdateProduct}}}>Edit</Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <button className="btn" onClick={() => handleDeleteProduct(product._id)}>DELETE</button>
       </div>

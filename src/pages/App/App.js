@@ -13,6 +13,7 @@ import userService from "../../utils/userService";
 import NavBar from "../../components/NavBar/NavBar";
 import AddProductPage from "../AddProductPage/AddProductPage";
 import ProductIndexPage from "../ProductIndexPage/ProductIndexPage";
+import ProductDetailPage from "../ProductDetailPage/ProductDetailPage";
 
 class App extends Component {
   constructor() {
@@ -80,6 +81,7 @@ class App extends Component {
                 handleDeleteProduct={this.handleDeleteProduct}
                 products={this.state.products}
                 user={this.state.user}
+                location={this.location}
               />
             )}
           />
@@ -92,6 +94,11 @@ class App extends Component {
                 handleAddProduct={this.handleAddProduct}
               />
             )}
+          />
+          <Route
+            exact
+            path="/details"
+            render={({ location }) => <ProductDetailPage location={location} />}
           />
           <Route
             exact

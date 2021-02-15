@@ -4,7 +4,7 @@ import ProductListItem from '../../components/ProductListItem/ProductListItem';
 function ProductIndexPage(props) {
   return (
     <div>
-      <h1>Products</h1>
+      <h1>Products Index</h1>
       <div>
         {props.products.map(product => 
           <ProductListItem 

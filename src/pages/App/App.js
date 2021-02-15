@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Route, Link, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 
+import * as productsAPI from "../../services/products-api";
+
 import LoginPage from "../LoginPage/LoginPage";
 import LogoutPage from "../LogoutPage/LogoutPage";
 import SignupPage from "../SignupPage/SignupPage";
@@ -22,8 +24,20 @@ class App extends Component {
   }
 
   getInitialState() {
-    return {};
+    return {
+      products: [],
+    };
   }
+
+  handleAddProduct = async (newProductData) => {
+    const newProduct = await productsAPI.create(newProductData);
+    this.setState(
+      (state) => ({
+        products: [...state.products, newProduct],
+      }),
+      () => this.props.history.push("/products/new")
+    );
+  };
 
   handleSignupOrLogin = () => {
     this.setState({ user: userService.getUser() });
@@ -35,7 +49,7 @@ class App extends Component {
   };
 
   handleDeleteProduct = async (id) => {
-    await productAPI.deleteOne(id);
+    await productsAPI.deleteOne(id);
     this.setState(
       (state) => ({
         products: state.products.filter((p) => p._id !== id),
@@ -44,43 +58,67 @@ class App extends Component {
     );
   };
 
+  /*--- Lifecycle Methods ---*/
+
+  async componentDidMount() {
+    const products = await productsAPI.getAll();
+    console.log("Component Did Mount - Products: ", products);
+    console.log("Component Did Mount - history: ", this.props);
+    this.setState({ products });
+  }
+
   render() {
     return (
       <div className="App">
-        <Switch></Switch>
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
-        <Route
-          exact
-          path="/products"
-          render={() => (
-            <ProductIndexPage
-              handleDeleteProduct={this.handleDeleteProduct}
-              products={this.state.products}
-            />
-          )}
-        />
-        <Route exact path="/products/new" render={() => <AddProductPage />} />
-        <Route
-          exact
-          path="/signup"
-          render={({ history }) => (
-            <SignupPage
-              history={history}
-              handleSignupOrLogin={this.handleSignupOrLogin}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/login"
-          render={({ history }) => (
-            <LoginPage
-              history={history}
-              handleSignupOrLogin={this.handleSignupOrLogin}
-            />
-          )}
-        />
-        <Route exact path="/logout" render={({ history }) => <LogoutPage />} />
+        <Switch>
+          <Route
+            exact
+            path="/products"
+            render={({ props }) => (
+              <ProductIndexPage
+                handleDeleteProduct={this.handleDeleteProduct}
+                products={this.state.products}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/products/new"
+            render={({ props }) => (
+              <AddProductPage
+                user={this.state.user}
+                handleAddProduct={this.handleAddProduct}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={({ history }) => (
+              <SignupPage
+                history={history}
+                handleSignupOrLogin={this.handleSignupOrLogin}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/login"
+            render={({ history }) => (
+              <LoginPage
+                history={history}
+                handleSignupOrLogin={this.handleSignupOrLogin}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/logout"
+            render={({ history }) => <LogoutPage />}
+          />
+        </Switch>
       </div>
     );
   }

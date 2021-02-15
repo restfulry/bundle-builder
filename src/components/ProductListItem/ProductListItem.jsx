@@ -4,8 +4,9 @@ import {Link} from 'react-router-dom';
 function ProductListItem({product, handleDeleteProduct}) {
   return (
     <div className='panel'>
+      Products Index
       <div className="panel-heading">
-        <h3 className="panel-title">{product.productName}</h3>
+        <h3 className="panel-title">{product.productName}PRODUCT A</h3>
       </div>
       <div className="panel-footer">
         <Link className='btn' to={{pathname:'/details', state: {product}}}>Details</Link>

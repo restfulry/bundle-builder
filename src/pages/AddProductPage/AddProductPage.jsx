@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { withRouter } from "react-router";
 
 class AddProductPage extends Component {
   state = {
@@ -7,7 +8,7 @@ class AddProductPage extends Component {
       productName: 'Product Name',
       description: 'Description',
       price: 0,
-      tags: 'Product Tags',
+      tags: 'Product Tags'
     }
   };
 
@@ -21,6 +22,7 @@ class AddProductPage extends Component {
   handleChange = e => {
     const formData = {...this.state.formData,
     [e.target.name]: e.target.value};
+
     this.setState({
       formData,
       invalidForm: !this.formRef.current.checkValidity()
@@ -31,7 +33,7 @@ class AddProductPage extends Component {
     return (
       <div>
         <h1>Add Product</h1>
-        <form ref={this.formRef} autoComplete="off" onSubmit={this.handlSubmit}>
+        <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
           
           <div className="form-group">
             <label>Name</label>
@@ -61,4 +63,4 @@ class AddProductPage extends Component {
 
 }
 
-export default AddProductPage;
+export default withRouter(AddProductPage);

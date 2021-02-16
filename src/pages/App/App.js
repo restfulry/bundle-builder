@@ -124,7 +124,7 @@ class App extends Component {
               />
             )}
           />
-
+          {/* AUTH */}
           <Route
             exact
             path="/signup"

@@ -5,7 +5,7 @@ import './NavBar.css';
 const NavBar = ({user, handleLogout}) => {
   let nav = user ?
     <div>
-      <Link to="/products/new">Add New Product</Link>
+      <Link to="/bundles">View Bundles</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="/products">View Products</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;

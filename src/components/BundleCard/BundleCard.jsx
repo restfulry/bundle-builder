@@ -18,7 +18,7 @@ function BundleCard({bundle, products, productsInBundle}) {
           <dt>Required Products</dt>
           <dd>{bundle.requiredProducts}</dd>
           <dt>Eligible Products</dt>
-          {productsInBundle.map((product) => <dd>{product.productName}</dd>)}
+          {productsInBundle.map((product) => <dd><Link className='btn' to={{pathname:'/product/details', state: {product}}}>{product.productName}</Link></dd>)}
           <dt>Discount Amount</dt>
           <dd>{bundle.discountAmount}</dd>
           <dt>Minimum Number of Products Required</dt>

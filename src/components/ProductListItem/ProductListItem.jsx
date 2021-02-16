@@ -8,8 +8,8 @@ function ProductListItem({product, handleDeleteProduct, handleUpdateProduct}) {
       <h3 className="panel-title">
         <Link className='btn' to={{pathname:'/product/details', state: {product}}}>
           {product.productName}
-        </Link>     
-          &nbsp;&nbsp;|&nbsp;&nbsp; ${product.price}  
+        </Link>
+          &nbsp;&nbsp;|&nbsp;&nbsp; ${product.price}
       </h3>
       </div>
       <div className="panel-footer">

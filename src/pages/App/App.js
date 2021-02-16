@@ -19,6 +19,7 @@ import AddProductPage from "../AddProductPage/AddProductPage";
 import EditProductPage from "../EditProductPage/EditProductPage";
 
 import BundleIndexPage from "../BundleIndexPage/BundleIndexPage";
+import BundleDetailPage from "../BundleDetailPage/BundleDetailPage";
 import AddBundlePage from "../AddBundlePage/AddBundlePage";
 
 class App extends Component {
@@ -112,6 +113,7 @@ class App extends Component {
               <BundleIndexPage
                 bundles={this.state.bundles}
                 user={this.state.user}
+                products={this.state.products}
               />
             )}
           />
@@ -129,7 +131,12 @@ class App extends Component {
           <Route
             exact
             path="/bundle/details"
-            render={({ location }) => <BundleDetailPage location={location} />}
+            render={({ location }) => (
+              <BundleDetailPage
+                location={location}
+                products={this.state.products}
+              />
+            )}
           />
           <Route
             exact

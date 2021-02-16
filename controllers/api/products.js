@@ -1,7 +1,10 @@
 const Product = require("../../models/product");
 
 async function index(req, res) {
-  const products = await Product.find({});
+  const products = await Product.find({
+    storeOwner: "6024acfa80eb0164f8bc6252",
+  });
+  console.log("blakg");
   res.status(200).json(products);
 }
 

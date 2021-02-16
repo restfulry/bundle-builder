@@ -43,7 +43,7 @@ class SignupForm extends Component {
         <form className="form-horizontal" onSubmit={this.handleSubmit} >
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="text" className="form-control" placeholder="storeName" value={this.state.storeName} name="storeName" onChange={this.handleChange} />
+              <input type="text" className="form-control" placeholder="Store Name" value={this.state.storeName} name="storeName" onChange={this.handleChange} />
             </div>
           </div>
           <div className="form-group">

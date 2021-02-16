@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import ProductListItem from '../../components/ProductListItem/ProductListItem';
 
 function ProductIndexPage(props) {
+  console.log("Product Index Page: ", props.products)
+
   return (
     <div>
       <h1>Products Index</h1>

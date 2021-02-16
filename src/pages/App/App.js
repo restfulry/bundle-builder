@@ -3,6 +3,7 @@ import { Route, Link, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 
 import * as productsAPI from "../../services/products-api";
+import * as bundlesAPI from "../../services/bundles-api";
 
 import NavBar from "../../components/NavBar/NavBar";
 
@@ -113,9 +114,17 @@ class App extends Component {
               />
             )}
           />
-          <Route exact path='/bundles/new' render={({ props }) {
-            <AddBundlePage user={this.state.user} handleAddBundle={this.handleAddBundle}/>
-          }} />
+          <Route
+            exact
+            path="/bundles/new"
+            render={({ props }) => (
+              <AddBundlePage
+                user={this.state.user}
+                handleAddBundle={this.handleAddBundle}
+                products={this.state.products}
+              />
+            )}
+          />
           <Route
             exact
             path="/products"

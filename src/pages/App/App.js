@@ -12,10 +12,12 @@ import SignupPage from "../SignupPage/SignupPage";
 
 import userService from "../../utils/userService";
 
-import AddProductPage from "../AddProductPage/AddProductPage";
 import ProductIndexPage from "../ProductIndexPage/ProductIndexPage";
 import ProductDetailPage from "../ProductDetailPage/ProductDetailPage";
+import AddProductPage from "../AddProductPage/AddProductPage";
 import EditProductPage from "../EditProductPage/EditProductPage";
+
+import BundleIndexPage from "../BundleIndexPage/BundleIndexPage";
 
 class App extends Component {
   constructor() {
@@ -29,6 +31,7 @@ class App extends Component {
   getInitialState() {
     return {
       products: [],
+      bundles: [],
     };
   }
 
@@ -86,6 +89,11 @@ class App extends Component {
       <div className="App">
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
         <Switch>
+          <Route
+            exact
+            path="/bundles"
+            render={({ props }) => <BundleIndexPage />}
+          />
           <Route
             exact
             path="/products"

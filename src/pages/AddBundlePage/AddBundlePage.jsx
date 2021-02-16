@@ -48,7 +48,7 @@ class AddBundlePage extends Component {
 
           <div className="form-group">
             <label>Description</label>
-            <input className="form-control" name="description" value={this.state.formData.description} onChange={this.handleChange} required />
+            <textarea name="description" value={this.state.formData.description} onChange={this.handleChange} required/>
           </div>
 
           <div className="form-group">

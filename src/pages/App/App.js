@@ -54,7 +54,7 @@ class App extends Component {
       (state) => ({
         bundles: [...state.bundles, newBundle],
       }),
-      () => this.props.history.push("/bundles/new")
+      () => this.props.history.push("/bundles")
     );
   };
 
@@ -65,7 +65,7 @@ class App extends Component {
       (state) => ({
         products: [...state.products, newProduct],
       }),
-      () => this.props.history.push("/products/new")
+      () => this.props.history.push("/products")
     );
   };
 

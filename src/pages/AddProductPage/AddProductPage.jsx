@@ -20,8 +20,9 @@ class AddProductPage extends Component {
   }
 
   handleChange = e => {
+    
     const formData = {...this.state.formData,
-    [e.target.name]: e.target.value};
+    [e.target.name]: e.target.value, storeOwner: this.props.user._id};
 
     this.setState({
       formData,

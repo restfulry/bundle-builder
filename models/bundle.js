@@ -13,9 +13,7 @@ const bundleSchema = new Schema(
     tags: [{ type: String }],
     storeOwner: { type: Schema.Types.ObjectId, ref: "User" },
     requiredProducts: [{ type: Schema.Types.ObjectId, ref: "Product" }],
-    eligibleProducts: [
-      { type: Schema.Types.ObjectId, ref: "Product", required: true },
-    ],
+    eligibleProducts: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   },
   {
     timestamps: true,

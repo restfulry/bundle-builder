@@ -14,7 +14,7 @@ class AddBundlePage extends Component {
       maxNumProducts: 9999,
       tags: [],
       requiredProducts: [],
-      eligibleProducts: [],
+      eligibleProducts: [...this.props.products],
     }
   };
 
@@ -59,6 +59,11 @@ class AddBundlePage extends Component {
           <div className="form-group">
             <label>Tags</label>
             <input className="form-control" name="tags" value={this.state.formData.tags} onChange={this.handleChange} required />
+          </div>
+
+          <div className="form-group">
+            <label>Discount Amount</label>
+            <input className="form-control" name="discountAmount" value={this.state.formData.discountAmount} onChange={this.handleChange} required />
           </div>
 
           <div className="form-group">

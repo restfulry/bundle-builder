@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function BundleListItem({bundle, handleDeleteBundle}) {
+function BundleListItem({bundle}) {
   return(
     <div className='panel'>
     <div className="panel-heading">
@@ -15,7 +15,7 @@ function BundleListItem({bundle, handleDeleteBundle}) {
     <div className="panel-footer">
       {/* <Link className='btn' to={{pathname:'/bundle/edit', state: {bundle, handleUpdateBundle}}}>Edit</Link> */}
       &nbsp;&nbsp;|&nbsp;&nbsp;
-      <button className="btn" onClick={() => handleDeleteBundle(product._id)}>DELETE</button>
+      {/* <button className="btn" onClick={() => handleDeleteBundle(product._id)}>DELETE</button> */}
     </div>
   </div>
   )

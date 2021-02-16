@@ -92,8 +92,16 @@ class App extends Component {
           <Route
             exact
             path="/bundles"
-            render={({ props }) => <BundleIndexPage />}
+            render={({ props }) => (
+              <BundleIndexPage
+                bundles={this.state.bundles}
+                user={this.state.user}
+              />
+            )}
           />
+          <Route exact path='/bundles/new' render={({ props }) {
+            <AddBundlePage user={this.state.user} handleAddBundle={this.handleAddBundle}/>
+          }} />
           <Route
             exact
             path="/products"

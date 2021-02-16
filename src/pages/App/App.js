@@ -18,6 +18,7 @@ import AddProductPage from "../AddProductPage/AddProductPage";
 import EditProductPage from "../EditProductPage/EditProductPage";
 
 import BundleIndexPage from "../BundleIndexPage/BundleIndexPage";
+import AddBundlePage from "../AddBundlePage/AddBundlePage";
 
 class App extends Component {
   constructor() {
@@ -35,6 +36,7 @@ class App extends Component {
     };
   }
 
+  //----------- AUTH -----------//
   handleSignupOrLogin = () => {
     this.setState({ user: userService.getUser() });
   };
@@ -44,6 +46,18 @@ class App extends Component {
     this.setState({ user: null });
   };
 
+  //----------- BUNDLE HANDLES -----------//
+  handleAddBundle = async (newBundleData) => {
+    const newBundle = await bundlesAPI.create(newBundleData);
+    this.setState(
+      (state) => ({
+        bundles: [...state.bundles, newBundle],
+      }),
+      () => this.props.history.push("/bundles/new")
+    );
+  };
+
+  //----------- PRODUCT HANDLES -----------//
   handleAddProduct = async (newProductData) => {
     const newProduct = await productsAPI.create(newProductData);
     this.setState(

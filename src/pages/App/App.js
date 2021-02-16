@@ -128,6 +128,11 @@ class App extends Component {
           />
           <Route
             exact
+            path="/bundle/details"
+            render={({ location }) => <BundleDetailPage location={location} />}
+          />
+          <Route
+            exact
             path="/products"
             render={({ props }) => (
               <ProductIndexPage

@@ -14,7 +14,7 @@ function BundleListItem({bundle}) {
     </div>
     <div className="panel-footer">
       {/* <Link className='btn' to={{pathname:'/bundle/edit', state: {bundle, handleUpdateBundle}}}>Edit</Link> */}
-      &nbsp;&nbsp;|&nbsp;&nbsp;
+      {/* &nbsp;&nbsp;|&nbsp;&nbsp; */}
       {/* <button className="btn" onClick={() => handleDeleteBundle(product._id)}>DELETE</button> */}
     </div>
   </div>

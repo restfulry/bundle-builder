@@ -21,9 +21,9 @@ class AddBundlePage extends Component {
   formRef = React.createRef();
 
   handleSubmit = e => {
-    e.preventdefault();
+    e.preventDefault();
     this.props.handleAddBundle(this.state.formData);
-  };
+  }
 
   handleChange = e => {
     const formData = {...this.state.formData, [e.target.name]: e.target.value, storeOwner: this.props.user._id};
@@ -87,14 +87,14 @@ class AddBundlePage extends Component {
           <label>
             Required Products
             <select value={this.state.formData.requiredProducts} onChange={this.handleChange} multiple={true}>
-            {this.props.products.map(product => <option value={product.productName}>{product.productName}</option>)}
+            {this.props.products.map((product, idx) => <option key={idx} value={product.productName}>{product.productName}</option>)}
             </select>
           </label>
 
           <label>
             Eligible Products
             <select value={this.state.formData.eligibleProducts} onChange={this.handleChange} multiple={true}>
-            {this.props.products.map(product => <option value={product.productName}>{product.productName}</option>)}
+            {this.props.products.map((product, idx) => <option key={idx} value={product.productName}>{product.productName}</option>)}
             </select>
           </label>
 

@@ -96,7 +96,8 @@ class App extends Component {
 
   async componentDidMount() {
     const products = await productsAPI.getAll();
-    this.setState({ products });
+    const bundles = await bundlesAPI.getAll();
+    this.setState({ products, bundles });
   }
 
   render() {

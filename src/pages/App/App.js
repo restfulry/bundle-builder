@@ -46,7 +46,7 @@ class App extends Component {
     this.setState({ user: null });
   };
 
-  //----------- BUNDLE HANDLES -----------//
+  //----------- BUNDLE HANDLER -----------//
   handleAddBundle = async (newBundleData) => {
     const newBundle = await bundlesAPI.create(newBundleData);
     this.setState(
@@ -57,7 +57,7 @@ class App extends Component {
     );
   };
 
-  //----------- PRODUCT HANDLES -----------//
+  //----------- PRODUCT HANDLER -----------//
   handleAddProduct = async (newProductData) => {
     const newProduct = await productsAPI.create(newProductData);
     this.setState(

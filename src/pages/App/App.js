@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Link, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 
+import * as storesAPI from "../../services/stores-api";
 import * as productsAPI from "../../services/products-api";
 import * as bundlesAPI from "../../services/bundles-api";
 
@@ -37,6 +38,7 @@ class App extends Component {
     return {
       products: [],
       bundles: [],
+      allStores: [],
     };
   }
 
@@ -100,7 +102,8 @@ class App extends Component {
   async componentDidMount() {
     const products = await productsAPI.getAll();
     const bundles = await bundlesAPI.getAll();
-    this.setState({ products, bundles });
+    const allStores = await storesAPI.getAll();
+    this.setState({ products, bundles, allStores });
   }
 
   render() {
@@ -108,7 +111,11 @@ class App extends Component {
       <div className="App">
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
         <Switch>
-          <Route exact path="/" render={() => <StoresIndexPage />} />
+          <Route
+            exact
+            path="/"
+            render={() => <StoresIndexPage allStores={this.state.allStores} />}
+          />
           <Route
             exact
             path="/bundles"

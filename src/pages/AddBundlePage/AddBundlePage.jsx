@@ -8,7 +8,7 @@ class AddBundlePage extends Component {
       bundleName: '',
       description: '',
       price: 0,
-      discountType: '',
+      discountType: 'flat',
       discountAmount: 0,
       minNumProducts: 1,
       maxNumProducts: 9999,
@@ -45,6 +45,7 @@ class AddBundlePage extends Component {
   };
 
   updateRequiredOrEligible(type, product) {
+    console.log(product)
     if (this.state.formData[type].includes(product)) {
       return [...this.state.formData[type]];
     } else {
@@ -72,11 +73,6 @@ class AddBundlePage extends Component {
           <div className="form-group">
             <label>Price</label>
             <input className="form-control" name="price" value={this.state.formData.price} onChange={this.handleChange} required />
-          </div>
-
-          <div className="form-group">
-            <label>Tags</label>
-            <input className="form-control" name="tags" value={this.state.formData.tags} onChange={this.handleChange} required />
           </div>
 
           <div className="form-group">
@@ -115,6 +111,11 @@ class AddBundlePage extends Component {
             {this.props.products.map((product, idx) => <option key={product._id} value={product._id}>{product.productName}</option>)}
             </select>
           </label>
+
+          <div className="form-group">
+            <label>Tags</label>
+            <input className="form-control" name="tags" value={this.state.formData.tags} onChange={this.handleChange} />
+          </div>
 
           <button type="submit" className="btn" disabled={this.state.invalidForm}>Add bundle</button>
         </form>

@@ -7,9 +7,9 @@ const NavBar = ({user, handleLogout}) => {
     <div>
       <h3>{user.storeName}</h3>
       &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/bundles">View Bundles</Link>
+      <Link to="/bundles">My Bundles</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/products">View Products</Link>
+      <Link to="/products">My Products</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="" className="NavBar-link" onClick={handleLogout}>
       LOG OUT
@@ -18,11 +18,11 @@ const NavBar = ({user, handleLogout}) => {
     :
     <div>
       <Link to="/login" className="NavBar-link">
-      LOG IN
+      My Store
       </Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="/signup" className="NavBar-link">
-      SIGN UP
+      STORE SIGN UP
       </Link>
     </div>
     

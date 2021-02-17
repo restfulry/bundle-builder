@@ -5,6 +5,8 @@ import './NavBar.css';
 const NavBar = ({user, handleLogout}) => {
   let nav = user ?
     <div>
+      <h3>{user.storeName}</h3>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="/bundles">View Bundles</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="/products">View Products</Link>

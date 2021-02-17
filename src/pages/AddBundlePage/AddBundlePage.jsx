@@ -8,13 +8,13 @@ class AddBundlePage extends Component {
       bundleName: '',
       description: '',
       price: 0,
-      discountType: 'flat',
+      discountType: '',
       discountAmount: 0,
       minNumProducts: 1,
       maxNumProducts: 9999,
       tags: [],
       requiredProducts: [],
-      eligibleProducts: [...this.props.products],
+      eligibleProducts: [],
     }
   };
 
@@ -26,13 +26,33 @@ class AddBundlePage extends Component {
   }
 
   handleChange = e => {
-    const formData = {...this.state.formData, [e.target.name]: e.target.value, storeOwner: this.props.user._id};
+    console.log(e.target.name)
+    e.preventDefault();
 
+    let value;
+
+    if (e.target.name === 'requiredProducts' || e.target.name === 'eligibleProducts') {
+      value = this.updateRequiredOrEligible(e.target.name, e.target.value);
+    } else {
+      value = e.target.value;
+    };
+
+    const formData = {...this.state.formData, [e.target.name]: value, storeOwner: this.props.user._id};
+    console.log("formData: ", formData)
     this.setState({
       formData,
       invalidForm: !this.formRef.current.checkValidity()
     })
   };
+
+  updateRequiredOrEligible(type, product) {
+    console.log(this.state.formData[type]);
+    if (this.state.formData[type].includes(product)) {
+      return [...this.state.formData[type]];
+    } else {
+      return [...this.state.formData[type], product];
+    }
+  }
 
   render() {
     return (
@@ -78,7 +98,7 @@ class AddBundlePage extends Component {
 
           <label>
             Select Discount Type
-            <select value={this.state.formData.discountType} onChange={this.handleChange} required>
+            <select name="discountType" value={this.state.formData.discountType} onChange={e => {console.log(e);this.handleChange(e)}} required>
               <option value="flat">Flat Discount</option>
               <option value="tiered">Tiered</option>
             </select>
@@ -86,15 +106,15 @@ class AddBundlePage extends Component {
 
           <label>
             Required Products
-            <select value={this.state.formData.requiredProducts} onChange={this.handleChange} multiple={true}>
-            {this.props.products.map((product, idx) => <option key={idx} value={product}>{product.productName}</option>)}
-            </select>
           </label>
+            <select name="requiredProducts" value={[this.state.formData.requiredProducts]} onChange={this.handleChange} multiple={true}>
+            {this.props.products.map((product, idx) => <option key={product._id} value={product._id}>{product.productName}</option>)}
+            </select>
 
           <label>
             Eligible Products
-            <select value={this.state.formData.eligibleProducts} onChange={this.handleChange} multiple={true}>
-            {this.props.products.map((product, idx) => <option key={idx} value={product}>{product.productName}</option>)}
+            <select name="eligibleProducts" value={[this.state.formData.eligibleProducts]} onChange={this.handleChange} multiple={true}>
+            {this.props.products.map((product, idx) => <option key={product._id} value={product._id}>{product.productName}</option>)}
             </select>
           </label>
 

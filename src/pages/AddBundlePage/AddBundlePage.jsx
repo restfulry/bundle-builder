@@ -26,7 +26,6 @@ class AddBundlePage extends Component {
   }
 
   handleChange = e => {
-    console.log(e.target.name)
     e.preventDefault();
 
     let value;
@@ -38,7 +37,7 @@ class AddBundlePage extends Component {
     };
 
     const formData = {...this.state.formData, [e.target.name]: value, storeOwner: this.props.user._id};
-    console.log("formData: ", formData)
+
     this.setState({
       formData,
       invalidForm: !this.formRef.current.checkValidity()
@@ -46,7 +45,6 @@ class AddBundlePage extends Component {
   };
 
   updateRequiredOrEligible(type, product) {
-    console.log(this.state.formData[type]);
     if (this.state.formData[type].includes(product)) {
       return [...this.state.formData[type]];
     } else {

@@ -13,6 +13,8 @@ import SignupPage from "../SignupPage/SignupPage";
 
 import userService from "../../utils/userService";
 
+import StoresIndexPage from "../StoresIndexPage/StoresIndexPage";
+
 import ProductIndexPage from "../ProductIndexPage/ProductIndexPage";
 import ProductDetailPage from "../ProductDetailPage/ProductDetailPage";
 import AddProductPage from "../AddProductPage/AddProductPage";
@@ -106,6 +108,7 @@ class App extends Component {
       <div className="App">
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
         <Switch>
+          <Route exact path="/" render={() => <StoresIndexPage />} />
           <Route
             exact
             path="/bundles"

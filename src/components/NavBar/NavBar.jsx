@@ -9,7 +9,7 @@ const NavBar = ({user, handleLogout}) => {
       &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="/admin/bundles">My Bundles</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/products">My Products</Link>
+      <Link to="/admin/products">My Products</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="" className="NavBar-link" onClick={handleLogout}>
       LOG OUT

@@ -70,7 +70,7 @@ class App extends Component {
       (state) => ({
         products: [...state.products, newProduct],
       }),
-      () => this.props.history.push("/products")
+      () => this.props.history.push("/admin/products")
     );
   };
 
@@ -83,7 +83,7 @@ class App extends Component {
       {
         products: newProductsArray,
       },
-      () => this.props.history.push("/products")
+      () => this.props.history.push("/admin/products")
     );
   };
 
@@ -93,7 +93,7 @@ class App extends Component {
       (state) => ({
         products: state.products.filter((p) => p._id !== id),
       }),
-      () => this.props.history.push("/products")
+      () => this.props.history.push("/admin/products")
     );
   };
 
@@ -150,7 +150,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/products"
+            path="/admin/products"
             render={({ props }) => (
               <ProductIndexPage
                 handleUpdateProduct={this.handleUpdateProduct}
@@ -162,7 +162,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/products/new"
+            path="/admin/products/new"
             render={({ props }) => (
               <AddProductPage
                 user={this.state.user}
@@ -172,13 +172,13 @@ class App extends Component {
           />
           <Route
             exact
-            path="/product/details"
+            path="/admin/product/details"
             render={({ location }) => <ProductDetailPage location={location} />}
           />
 
           <Route
             exact
-            path="/product/edit"
+            path="/admin/product/edit"
             render={({ location }) => (
               <EditProductPage
                 handleUpdateProduct={this.handleUpdateProduct}

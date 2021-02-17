@@ -50,7 +50,7 @@ class EditProductPage extends Component {
           className="btn" disabled={this.state.invalidForm}>
             Save
           </button>
-          <Link to='/products'>Cancel</Link>
+          <Link to='/admin/products'>Cancel</Link>
         </form>
       </div>
     )

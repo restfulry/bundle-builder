@@ -8,7 +8,7 @@ function ProductIndexPage(props) {
   return (
     <div>
       <h1>Products Index</h1>
-      <Link to="/products/new">Add New Product</Link>
+      <Link to="/admin/products/new">Add New Product</Link>
       <div>
         {props.products.map(product => 
           <ProductListItem 

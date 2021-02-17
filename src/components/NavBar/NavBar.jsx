@@ -7,7 +7,7 @@ const NavBar = ({user, handleLogout}) => {
     <div>
       <h3>{user.storeName}</h3>
       &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/bundles">My Bundles</Link>
+      <Link to="/admin/bundles">My Bundles</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="/products">My Products</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;

@@ -7,7 +7,7 @@ function BundleIndexPage(props) {
   return (
     <div>
       <h1>Bundles Index</h1>
-      <Link to="/bundles/new">Create New Bundle</Link>
+      <Link to="/admin/bundles/new">Create New Bundle</Link>
       <div>
         {props.bundles.map((bundle) => <BundleListItem key={bundle._id} bundle={bundle}/>)}
       </div>

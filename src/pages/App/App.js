@@ -59,7 +59,7 @@ class App extends Component {
       (state) => ({
         bundles: [...state.bundles, newBundle],
       }),
-      () => this.props.history.push("/bundles")
+      () => this.props.history.push("/admin/bundles")
     );
   };
 
@@ -118,7 +118,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/bundles"
+            path="/admin/bundles"
             render={({ props }) => (
               <BundleIndexPage
                 bundles={this.state.bundles}
@@ -129,7 +129,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/bundles/new"
+            path="/admin/bundles/new"
             render={({ props }) => (
               <AddBundlePage
                 user={this.state.user}

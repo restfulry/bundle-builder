@@ -21,7 +21,7 @@ class LoginPage extends Component {
     try {
       await userService.login(this.state);
       this.props.handleSignupOrLogin();
-      this.props.history.push('/bundles');
+      this.props.history.push('/admin/bundles');
     } catch (err) {
       alert('Invalid Credentials!');
     }

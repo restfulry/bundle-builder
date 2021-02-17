@@ -30,7 +30,7 @@ function BundleCard({bundle, products, productsInBundle}) {
         </dl>
       </div>
       <div className='panel-footer'>
-        <Link to='/bundles'>RETURN TO BUNDLES</Link>
+        <Link to='/admin/bundles'>RETURN TO BUNDLES</Link>
       </div>
     </div>
   );

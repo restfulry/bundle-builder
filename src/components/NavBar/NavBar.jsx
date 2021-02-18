@@ -17,8 +17,12 @@ const NavBar = ({user, handleLogout}) => {
     </div>
     :
     <div>
+      <Link to="/shop" className="NavBar-link">
+      Shop
+      </Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="/login" className="NavBar-link">
-      My Store
+      Login to My Store
       </Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="/signup" className="NavBar-link">

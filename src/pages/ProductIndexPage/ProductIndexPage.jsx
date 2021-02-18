@@ -8,13 +8,15 @@ function ProductIndexPage(props) {
   return (
     <div>
       <h1>Products Index</h1>
-      <Link to="/admin/products/new">Add New Product</Link>
+      {props.user ?
+      <Link to="/admin/products/new">Add New Product</Link> : <div></div>}
       <div>
         {props.products.map(product => 
           <ProductListItem 
             product={product}
             handleDeleteProduct={props.handleDeleteProduct} 
             key={product._id}
+            user={props.user}
             />
         )}
       </div>

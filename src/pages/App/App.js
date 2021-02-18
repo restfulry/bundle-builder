@@ -26,6 +26,7 @@ import EditProductPage from "../EditProductPage/EditProductPage";
 import BundleIndexPage from "../BundleIndexPage/BundleIndexPage";
 import BundleDetailPage from "../BundleDetailPage/BundleDetailPage";
 import AddBundlePage from "../AddBundlePage/AddBundlePage";
+import ShopBundlePage from "../ShopBundlePage/ShopBundlePage";
 
 class App extends Component {
   constructor() {
@@ -60,7 +61,7 @@ class App extends Component {
     this.setState(
       (state) => ({
         allStores: [...state.allStores, newStore],
-        currentStore: newStore,
+        userStore: newStore,
       }),
       () => this.props.history.push("/admin/bundles")
     );
@@ -128,19 +129,23 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path="/shop"
-            render={({ props }) => (
-              <StoresIndexPage
-                allStores={this.state.allStores}
-                user={this.state.user}
-              />
+            path="/shop/:currentStore/:selectedBundle"
+            render={({ location, match, user }) => (
+              <ShopBundlePage location={location} match={match} user={user} />
             )}
           />
           <Route
             exact
             path="/shop/:currentStore"
-            render={({ location, match }) => (
-              <ShopPage location={location} match={match} />
+            render={({ location, match, user }) => (
+              <ShopPage location={location} match={match} user={user} />
+            )}
+          />
+          <Route
+            exact
+            path="/shop"
+            render={({ allStores, user }) => (
+              <StoresIndexPage allStores={allStores} user={user} />
             )}
           />
           <Route

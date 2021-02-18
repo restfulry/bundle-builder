@@ -1,14 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function BundleListItem({bundle}) {
+function BundleListItem({bundle, user, store}) {
   return(
     <div className='panel'>
     <div className="panel-heading">
     <h3 className="panel-title">
+      {user ? 
       <Link className='btn' to={{pathname:'/admin/bundle/details', state: {bundle}}}>
         {bundle.bundleName}
       </Link>     
+      : 
+      <Link className='btn' to={{
+        pathname:'/shop/' + store.storeURL + '/' + bundle.bundleName,
+        state: {
+          store,
+          bundle
+        }
+      }}/>
+      }
+
         &nbsp;&nbsp;|&nbsp;&nbsp; ${bundle.price}  
     </h3>
     </div>

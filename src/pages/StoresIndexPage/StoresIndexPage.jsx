@@ -5,12 +5,14 @@ import Card from 'react-bootstrap/Card';
 
 function StoresIndexPage(props) {
   console.log("Store Index Page: ", props)
+
   return (
     <div>
       <h1>Something for everyone!</h1>
         {props.allStores.map(store => {
           if (store.storeName) {
           console.log(store);
+          let concatStoreName = store.storeName.split(" ").join("").toLowerCase();
           return (<Card style={{ width: '18rem' }}>
             <Card.Body>
               <Card.Title>{store.storeName}</Card.Title>
@@ -18,7 +20,7 @@ function StoresIndexPage(props) {
               <Card.Text>
                 Store Description Goes Here
               </Card.Text>
-              <Card.Link href="/shop">Shop</Card.Link>
+              <Card.Link href={'/shop/' + concatStoreName} store={store}>Shop</Card.Link>
             </Card.Body>
           </Card>)
           }

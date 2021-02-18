@@ -15,6 +15,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import userService from "../../utils/userService";
 
 import StoresIndexPage from "../StoresIndexPage/StoresIndexPage";
+import ShopPage from "../ShopPage/ShopPage";
 
 import ProductIndexPage from "../ProductIndexPage/ProductIndexPage";
 import ProductDetailPage from "../ProductDetailPage/ProductDetailPage";
@@ -118,14 +119,8 @@ class App extends Component {
           />
           <Route
             exact
-            path="/admin/bundles"
-            render={({ props }) => (
-              <BundleIndexPage
-                bundles={this.state.bundles}
-                user={this.state.user}
-                products={this.state.products}
-              />
-            )}
+            path="/shop/*"
+            render={({ location }) => <ShopPage location={location} />}
           />
           <Route
             exact
@@ -140,11 +135,33 @@ class App extends Component {
           />
           <Route
             exact
-            path="/bundle/details"
+            path="/admin/bundle/details"
             render={({ location }) => (
               <BundleDetailPage
                 location={location}
                 products={this.state.products}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/admin/bundles"
+            render={({ props }) => (
+              <BundleIndexPage
+                bundles={this.state.bundles}
+                user={this.state.user}
+                products={this.state.products}
+              />
+            )}
+          />
+
+          <Route
+            exact
+            path="/admin/products/new"
+            render={({ props }) => (
+              <AddProductPage
+                user={this.state.user}
+                handleAddProduct={this.handleAddProduct}
               />
             )}
           />
@@ -157,16 +174,6 @@ class App extends Component {
                 handleDeleteProduct={this.handleDeleteProduct}
                 products={this.state.products}
                 user={this.state.user}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/admin/products/new"
-            render={({ props }) => (
-              <AddProductPage
-                user={this.state.user}
-                handleAddProduct={this.handleAddProduct}
               />
             )}
           />

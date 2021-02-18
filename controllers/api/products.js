@@ -1,4 +1,5 @@
 const Product = require("../../models/product");
+const Store = require("../../models/store");
 
 async function index(req, res) {
   const products = await Product.find({});
@@ -12,6 +13,10 @@ async function show(req, res) {
 
 async function create(req, res) {
   const product = await Product.create(req.body);
+  Store.findById(req.params.id, function (err, store) {
+    store.products.push(req.body.productId);
+    store.save();
+  });
   res.status(201).json(product);
 }
 
@@ -28,8 +33,6 @@ async function update(req, res) {
   );
   res.status(200).json(updatedProduct);
 }
-
-async function addToStore(req, res) {}
 
 module.exports = {
   index,

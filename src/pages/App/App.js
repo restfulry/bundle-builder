@@ -113,6 +113,7 @@ class App extends Component {
   /*--- Lifecycle Methods ---*/
 
   async componentDidMount() {
+    console.log(this.state.user);
     const products = await productsAPI.getAll();
     const bundles = await bundlesAPI.getAll();
     const allStores = await storesAPI.getAll();

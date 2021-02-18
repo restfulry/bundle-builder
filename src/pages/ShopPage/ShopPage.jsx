@@ -14,7 +14,7 @@ function ShopPage({location, match, user}) {
   return (
     <div>
       <h1>Welcome to {store.storeName}</h1>
-     {bundles.map((bundle) => <BundleListItem user={user} key={bundle._id} bundle={bundle} store={store}/>)}
+     {bundles.map((bundle) => <BundleListItem user={user} key={bundle._id} bundle={bundle} store={store} products={products}/>)}
     </div>
   )
 };

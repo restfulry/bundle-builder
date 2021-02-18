@@ -1,33 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import './NavBar.css';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 const NavBar = ({user, handleLogout}) => {
   let nav = user ?
     <div>
-      <h3>{user.storeName}</h3>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/admin/bundles">My Bundles</Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/admin/products">My Products</Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="" className="NavBar-link" onClick={handleLogout}>
-      LOG OUT
-      </Link>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand href="/">{user.name}</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <NavDropdown.Item>
+                <Link to="/admin/bundles">My Bundles</Link>
+            </NavDropdown.Item>
+            <Nav.Link>
+              <Link to="/admin/products">My Products</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to="" className="NavBar-link" onClick={handleLogout}>
+              LOG OUT
+              </Link>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     </div>
     :
     <div>
-      <Link to="/shop" className="NavBar-link">
-      Shop
-      </Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/login" className="NavBar-link">
-      Login to My Store
-      </Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/signup" className="NavBar-link">
-      STORE SIGN UP
-      </Link>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand href="/">Bundler App</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <NavDropdown.Item>
+              <Link to="/shop" className="NavBar-link">Shop</Link>
+            </NavDropdown.Item>
+            <Nav.Link>
+              <Link to="/login" className="NavBar-link">Login to My Store</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to="/signup" className="NavBar-link">STORE SIGN UP</Link>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     </div>
     
     return (

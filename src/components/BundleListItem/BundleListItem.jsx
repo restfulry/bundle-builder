@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function BundleListItem({bundle, user, store}) {
+function BundleListItem({bundle, user, store, products}) {
   return(
     <div className='panel'>
     <div className="panel-heading">
@@ -15,7 +15,9 @@ function BundleListItem({bundle, user, store}) {
         pathname:'/shop/' + store.storeURL + '/' + bundle.bundleName,
         state: {
           store,
-          bundle
+          bundle,
+          user,
+          products
         }
       }}/>
       }

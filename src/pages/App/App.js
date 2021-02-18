@@ -8,6 +8,8 @@ import * as bundlesAPI from "../../services/bundles-api";
 
 import NavBar from "../../components/NavBar/NavBar";
 
+import HomePage from "../HomePage/HomePage";
+
 import LoginPage from "../LoginPage/LoginPage";
 import LogoutPage from "../LogoutPage/LogoutPage";
 import SignupPage from "../SignupPage/SignupPage";
@@ -115,11 +117,12 @@ class App extends Component {
   /*--- Lifecycle Methods ---*/
 
   async componentDidMount() {
-    console.log(this.state.user);
     const products = await productsAPI.getAll();
     const bundles = await bundlesAPI.getAll();
     const allStores = await storesAPI.getAll();
     this.setState({ products, bundles, allStores });
+    console.log("componentDidMount USER", this.state.user);
+    console.log("componentDidMount state", this.state);
   }
 
   render() {
@@ -130,8 +133,13 @@ class App extends Component {
           <Route
             exact
             path="/shop/:currentStore/:selectedBundle"
-            render={({ location, match, user }) => (
-              <ShopBundlePage location={location} match={match} user={user} />
+            render={({ location, match, user, products }) => (
+              <ShopBundlePage
+                location={location}
+                match={match}
+                user={user}
+                products={products}
+              />
             )}
           />
           <Route
@@ -144,8 +152,11 @@ class App extends Component {
           <Route
             exact
             path="/shop"
-            render={({ allStores, user }) => (
-              <StoresIndexPage allStores={allStores} user={user} />
+            render={({ props }) => (
+              <StoresIndexPage
+                allStores={this.state.allStores}
+                user={this.state.user}
+              />
             )}
           />
           <Route
@@ -254,6 +265,7 @@ class App extends Component {
             path="/logout"
             render={({ history }) => <LogoutPage />}
           />
+          <Route exact path="/" render={() => <HomePage />} />
         </Switch>
       </div>
     );

@@ -11,7 +11,8 @@ async function index(req, res) {
 }
 
 async function show(req, res) {
-  const store = await Store.findById(req.params.id);
+  const store = await Store.findById(req.params.storeName);
+  console.log("controller req params", store);
   res.status(200).json(store);
 }
 

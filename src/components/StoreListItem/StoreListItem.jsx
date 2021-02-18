@@ -13,7 +13,12 @@ function StoreListItem({ store }) {
           <Card.Text>
             {store.description}
           </Card.Text>
-          <Card.Link href={'/shop/' + store.storeURL}>Shop</Card.Link>
+          <Card.Link><Link to={{
+            pathname: '/shop/' + store.storeURL,
+            state: {
+              store
+            }
+            }}>SHOP NOW</Link></Card.Link>
         </Card.Body>
       </Card>
     </div>

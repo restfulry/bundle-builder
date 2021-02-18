@@ -136,7 +136,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/shop/:storeURL"
+            path="/shop/:currentStore"
             render={({ location, match }) => (
               <ShopPage location={location} match={match} />
             )}

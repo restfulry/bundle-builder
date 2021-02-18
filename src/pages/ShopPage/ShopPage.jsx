@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BundleListItem from "../../components/BundleListItem/BundleListItem"
 
 import Card from 'react-bootstrap/Card';
 
 function ShopPage({location, match}) {
-  console.log("location",location)
-  console.log("params", match.params.storeURL)
+  const {store} = location.state;
+  const products = store.products;
+  const bundles = store.bundles;
+
   return (
     <div>
-      <h1>Choose your bundle</h1>
+      <h1>Welcome to {store.storeName}</h1>
+     {bundles.map((bundle) => <BundleListItem key={bundle._id} bundle={bundle}/>)}
     </div>
   )
 };

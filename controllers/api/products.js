@@ -29,6 +29,8 @@ async function update(req, res) {
   res.status(200).json(updatedProduct);
 }
 
+async function addToStore(req, res) {}
+
 module.exports = {
   index,
   create,

@@ -57,7 +57,6 @@ class App extends Component {
   //----------- PRODUCT HANDLER -----------//
   handleAddStore = async (newStoreData) => {
     const newStore = await storesAPI.create(newStoreData);
-    console.log("newStore:", newStore);
     this.setState(
       (state) => ({
         allStores: [...state.allStores, newStore],
@@ -117,7 +116,6 @@ class App extends Component {
     const products = await productsAPI.getAll();
     const bundles = await bundlesAPI.getAll();
     const allStores = await storesAPI.getAll();
-    console.log("did Mount: ", allStores);
     this.setState({ products, bundles, allStores });
   }
 
@@ -138,8 +136,10 @@ class App extends Component {
           />
           <Route
             exact
-            path="/shop/*"
-            render={({ location }) => <ShopPage location={location} />}
+            path="/shop/:storeURL"
+            render={({ location, match }) => (
+              <ShopPage location={location} match={match} />
+            )}
           />
           <Route
             exact

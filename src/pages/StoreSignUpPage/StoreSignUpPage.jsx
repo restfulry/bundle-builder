@@ -8,6 +8,7 @@ class StoreSignUpPage extends Component {
       storeName: 'Store Name',
       description: 'Description',
       category: 'Food, Home Goods, etc...',
+      storeURL: '',
       storeAdmin: null,
     }
   };
@@ -39,6 +40,11 @@ class StoreSignUpPage extends Component {
           <div className="form-group">
             <label>Store Name</label>
             <input className="form-control" name="storeName" value={this.state.formData.storeName} onChange={this.handleChange} required />
+          </div>
+
+          <div className="form-group">
+            <label>Store URL (no spaces)</label>
+            <input className="form-control" name="storeURL" value={this.state.formData.storeURL} onChange={this.handleChange} required />
           </div>
 
           <div className="form-group">

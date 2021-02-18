@@ -9,6 +9,7 @@ const storeSchema = new mongoose.Schema(
     products: [{ type: Schema.Types.ObjectId, ref: "Products" }],
     bundles: [{ type: Schema.Types.ObjectId, ref: "Bundles" }],
     storeAdmin: [{ type: Schema.Types.ObjectId, ref: "Admin" }],
+    storeURL: { type: String, required: true },
   },
   {
     timestamps: true,

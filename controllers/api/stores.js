@@ -2,9 +2,9 @@ const Store = require("../../models/store");
 
 async function index(req, res) {
   try {
-    const stores = await Store.find({}, "storeName");
-    console.log("stores controller find:", stores);
-    res.status(200).json(stores);
+    const allStores = await Store.find({});
+    console.log("allStores controller find:", allStores);
+    res.status(200).json(allStores);
   } catch (err) {
     res.json({ err });
   }

@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import Card from 'react-bootstrap/Card';
 
-function ShopPage({location, store}) {
+function ShopPage({location, match}) {
   console.log("location",location)
-  console.log("store",store)
+  console.log("params", match.params.storeURL)
   return (
     <div>
       <h1>Choose your bundle</h1>

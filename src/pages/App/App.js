@@ -11,6 +11,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import LoginPage from "../LoginPage/LoginPage";
 import LogoutPage from "../LogoutPage/LogoutPage";
 import SignupPage from "../SignupPage/SignupPage";
+import StoreSignUpPage from "../StoreSignUpPage/StoreSignUpPage";
 
 import userService from "../../utils/userService";
 
@@ -51,6 +52,18 @@ class App extends Component {
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
+  };
+
+  //----------- PRODUCT HANDLER -----------//
+  handleAddStore = async (newStoreData) => {
+    const newStore = await storesAPI.create(newStoreData);
+    console.log("newStore:", newStore);
+    this.setState(
+      (state) => ({
+        allStores: [...state.allStores, newStore],
+      }),
+      () => this.props.history.push("/admin/bundles")
+    );
   };
 
   //----------- BUNDLE HANDLER -----------//
@@ -104,6 +117,7 @@ class App extends Component {
     const products = await productsAPI.getAll();
     const bundles = await bundlesAPI.getAll();
     const allStores = await storesAPI.getAll();
+    console.log("did Mount: ", allStores);
     this.setState({ products, bundles, allStores });
   }
 
@@ -115,7 +129,12 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => <StoresIndexPage allStores={this.state.allStores} />}
+            render={({ props }) => (
+              <StoresIndexPage
+                allStores={this.state.allStores}
+                user={this.state.user}
+              />
+            )}
           />
           <Route
             exact
@@ -154,7 +173,6 @@ class App extends Component {
               />
             )}
           />
-
           <Route
             exact
             path="/admin/products/new"
@@ -182,7 +200,6 @@ class App extends Component {
             path="/admin/product/details"
             render={({ location }) => <ProductDetailPage location={location} />}
           />
-
           <Route
             exact
             path="/admin/product/edit"
@@ -201,6 +218,17 @@ class App extends Component {
               <SignupPage
                 history={history}
                 handleSignupOrLogin={this.handleSignupOrLogin}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/store/new"
+            render={({ history }) => (
+              <StoreSignUpPage
+                history={history}
+                handleAddStore={this.handleAddStore}
+                user={this.state.user}
               />
             )}
           />

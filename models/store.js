@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const storeSchema = new mongoose.Schema(
   {
-    storeName: { String, required: true },
-    category: { String, required: true },
-    description: { String, required: true },
-    products: { type: Schema.Types.ObjectId, ref: "Products" },
-    bundles: { type: Schema.Types.ObjectId, ref: "Bundles" },
+    storeName: { type: String, required: true },
+    category: { type: String, required: true },
+    description: { type: String, required: true },
+    products: [{ type: Schema.Types.ObjectId, ref: "Products" }],
+    bundles: [{ type: Schema.Types.ObjectId, ref: "Bundles" }],
+    storeAdmin: [{ type: Schema.Types.ObjectId, ref: "Admin" }],
   },
   {
     timestamps: true,

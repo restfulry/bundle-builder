@@ -3,29 +3,12 @@ import { Link } from 'react-router-dom';
 
 import Card from 'react-bootstrap/Card';
 
-function StoresIndexPage(props) {
-  console.log("Store Index Page: ", props)
+function StoresIndexPage({allStores, user}) {
+  console.log("Store Index Page: ", allStores, user)
 
   return (
     <div>
       <h1>Something for everyone!</h1>
-        {props.allStores.map(store => {
-          if (store.storeName) {
-          console.log(store);
-          let concatStoreName = store.storeName.split(" ").join("").toLowerCase();
-          return (<Card style={{ width: '18rem' }}>
-            <Card.Body>
-              <Card.Title>{store.storeName}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">Store Category</Card.Subtitle>
-              <Card.Text>
-                Store Description Goes Here
-              </Card.Text>
-              <Card.Link href={'/shop/' + concatStoreName} store={store}>Shop</Card.Link>
-            </Card.Body>
-          </Card>)
-          }
-        }
-      )}
     </div>
   )
 };

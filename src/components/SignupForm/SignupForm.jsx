@@ -6,7 +6,6 @@ import userService from '../../utils/userService';
 class SignupForm extends Component {
 
   state = {
-    storeName:'',
     name: '',
     email: '',
     password: '',
@@ -25,7 +24,7 @@ class SignupForm extends Component {
     try {
       await userService.signup(this.state);
       this.props.handleSignupOrLogin();
-      this.props.history.push('/');
+      this.props.history.push('/store/new');
     } catch (err) {
       // Invalid user data (probably duplicate email)
       this.props.updateMessage(err.message);
@@ -41,11 +40,6 @@ class SignupForm extends Component {
       <div>
         <header className="header-footer">Sign Up</header>
         <form className="form-horizontal" onSubmit={this.handleSubmit} >
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="text" className="form-control" placeholder="Store Name" value={this.state.storeName} name="storeName" onChange={this.handleChange} />
-            </div>
-          </div>
           <div className="form-group">
             <div className="col-sm-12">
               <input type="text" className="form-control" placeholder="Name" value={this.state.name} name="name" onChange={this.handleChange} />

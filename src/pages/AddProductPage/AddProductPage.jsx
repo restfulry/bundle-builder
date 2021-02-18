@@ -8,7 +8,9 @@ class AddProductPage extends Component {
       productName: 'Product Name',
       description: 'Description',
       price: 0,
-      tags: 'Product Tags'
+      tags: 'Product Tags',
+      productStore: '',
+      createdBy: '',
     }
   };
 
@@ -17,12 +19,12 @@ class AddProductPage extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.handleAddProduct(this.state.formData);
-  }
+  } 
 
   handleChange = e => {
     const formData = {...this.state.formData,
-    [e.target.name]: e.target.value, storeOwner: this.props.user._id};
-
+    [e.target.name]: e.target.value, createdBy: this.props.user._id, productStore: this.props.user.storeOwned[0]};
+    console.log('handleChange form Data: ', this.props.user)
     this.setState({
       formData,
       invalidForm: !this.formRef.current.checkValidity()

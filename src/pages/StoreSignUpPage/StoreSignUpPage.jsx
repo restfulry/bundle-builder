@@ -17,7 +17,8 @@ class StoreSignUpPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("HANDLE SUBMIT",this.state.formData)
+    console.log("HANDLE SUBMIT Form Data",this.state.formData)
+    console.log("HANDLE SUBMIT User",this.props.user)
     this.props.handleAddStore(this.state.formData);
   }
 

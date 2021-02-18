@@ -7,7 +7,7 @@ const productSchema = new Schema(
     description: { type: String },
     price: { type: Number, default: 0, required: true },
     tags: { type: String },
-    storeOwner: { type: Schema.Types.ObjectId, ref: "User" },
+    productStore: { type: Schema.Types.ObjectId, ref: "Store" },
   },
   {
     timestamps: true,

@@ -54,12 +54,13 @@ class App extends Component {
     this.setState({ user: null });
   };
 
-  //----------- PRODUCT HANDLER -----------//
+  //----------- STORE HANDLER -----------//
   handleAddStore = async (newStoreData) => {
     const newStore = await storesAPI.create(newStoreData);
     this.setState(
       (state) => ({
         allStores: [...state.allStores, newStore],
+        currentStore: newStore,
       }),
       () => this.props.history.push("/admin/bundles")
     );
@@ -127,7 +128,7 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path="/"
+            path="/shop"
             render={({ props }) => (
               <StoresIndexPage
                 allStores={this.state.allStores}

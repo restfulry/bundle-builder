@@ -12,12 +12,23 @@ async function show(req, res) {
 }
 
 async function create(req, res) {
-  const product = await Product.create(req.body);
-  Store.findById(req.params.id, function (err, store) {
-    store.products.push(req.body.productId);
-    store.save();
-  });
-  res.status(201).json(product);
+  try {
+    const product = await Product.create(req.body);
+    console.log("Product CTRL Product: ", product);
+
+    const productId = await product._id;
+
+    console.log("Product CTRL req body", req.body);
+
+    Store.findById(req.body.productStore, (err, store) => {
+      console.log("CTRL Store", store);
+      store.products.push(productId);
+      store.save();
+    });
+    res.status(201).json(product);
+  } catch (err) {
+    res.json({ err });
+  }
 }
 
 async function deleteOne(req, res) {

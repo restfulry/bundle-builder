@@ -1,0 +1,24 @@
+h1 {
+  color: #fffffc;
+}
+
+p {
+  color: #fffffc;
+}
+
+.module {
+  background-color: #bdb2ff;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.NavBarLink {
+  color: #fffffc;
+  font-weight: bold;
+}
+
+.hero {
+  background-color: #ffadad;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}

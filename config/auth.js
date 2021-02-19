@@ -1,7 +1,15 @@
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 
-module.exports = function (req, res, next) {
+function createJWT(user) {
+  return jwt.sign(
+    { user }, // data payload
+    SECRET,
+    { expiresIn: "24h" }
+  );
+}
+
+function setUser(req, res, next) {
   // Check for the token being sent in three different ways
   let token = req.get("Authorization") || req.query.token || req.body.token;
   if (token) {
@@ -20,4 +28,9 @@ module.exports = function (req, res, next) {
   } else {
     next();
   }
+}
+
+module.exports = {
+  setUser,
+  createJWT,
 };

@@ -1,5 +1,6 @@
 const Store = require("../../models/store");
 const User = require("../../models/user");
+const { createJWT } = require("../../config/auth");
 
 async function index(req, res) {
   try {
@@ -22,19 +23,16 @@ async function create(req, res) {
     const storeId = store._id;
     const userId = req.body.storeAdmin;
 
-    console.log("USERID", userId);
-    console.log("Stores CTRL REQ BODY:", req.body);
-
-    User.findById(userId, async (err, user) => {
-      await user.storeOwned.push(storeId);
-      await user.save().catch((err) => console.err(err));
-      console.log("Stores CTRL User:", user);
+    User.findById(userId, (err, user) => {
+      user.storeOwned.push(storeId);
+      user
+        .save()
+        .then((user) => {
+          const token = createJWT(user);
+          res.status(201).json({ store, token });
+        })
+        .catch((err) => console.err(err));
     });
-
-    res.status(201).json(store);
-
-    let user1 = User.findById(userId);
-    console.log("Stores CTRL AFTER SAVE:", user1);
   } catch (err) {
     res.json({ err });
   }

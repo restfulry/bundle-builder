@@ -1,0 +1,22 @@
+.card {
+  border-radius: 15px;
+  margin: 1rem;
+}
+
+.cardBody {
+}
+
+.cardTitle {
+  font-family: "Anton", sans-serif;
+  font-size: 2rem;
+}
+
+.cardSubtitle {
+  font-size: 11px;
+  font-family: "Sarabun", sans-serif;
+}
+
+.cardText {
+  color: black;
+  font-family: "Sarabun", sans-serif;
+}

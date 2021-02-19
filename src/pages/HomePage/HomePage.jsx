@@ -16,7 +16,7 @@ function HomePage() {
         </p>
         <p>
           <Button variant="success" type="button"
-      style={{ backgroundColor: 'pink' }}>
+      >
             <Link to="/shop" className="NavBarLink">SHOP NOW</Link>
           </Button>
         </p>
@@ -27,7 +27,7 @@ function HomePage() {
           Add your product catalog, set custom bundle parameters, and increase your AOV!
         </p>
         <p>
-          <Button variant="success">
+          <Button variant="success" style={{ backgroundColor: 'pink' }}>
             <Link to="/signup" className="NavBarLink">STORE SIGN UP</Link>
           </Button>
         </p>

@@ -16,6 +16,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import StoreSignUpPage from "../StoreSignUpPage/StoreSignUpPage";
 
 import userService from "../../utils/userService";
+import tokenService from "../../utils/tokenService";
 
 import StoresIndexPage from "../StoresIndexPage/StoresIndexPage";
 import ShopPage from "../ShopPage/ShopPage";
@@ -59,13 +60,18 @@ class App extends Component {
 
   //----------- STORE HANDLER -----------//
   handleAddStore = async (newStoreData) => {
-    const newStore = await storesAPI.create(newStoreData);
+    const { store, token } = await storesAPI.create(newStoreData);
+    tokenService.setToken(token);
+
     this.setState(
       (state) => ({
-        allStores: [...state.allStores, newStore],
-        userStore: newStore,
+        allStores: [...state.allStores, store],
+        userStore: store,
+        user: userService.getUser(),
       }),
-      () => this.props.history.push("/admin/bundles")
+      () => {
+        this.props.history.push("/admin/bundles");
+      }
     );
   };
 
@@ -120,6 +126,7 @@ class App extends Component {
     const products = await productsAPI.getAll();
     const bundles = await bundlesAPI.getAll();
     const allStores = await storesAPI.getAll();
+    const userStore = await usersAPI.getOne();
     this.setState({ products, bundles, allStores });
     console.log("componentDidMount USER", this.state.user);
     console.log("componentDidMount state", this.state);
@@ -145,8 +152,12 @@ class App extends Component {
           <Route
             exact
             path="/shop/:currentStore"
-            render={({ location, match, user }) => (
-              <ShopPage location={location} match={match} user={user} />
+            render={({ location, match }) => (
+              <ShopPage
+                location={location}
+                match={match}
+                user={this.state.user}
+              />
             )}
           />
           <Route
@@ -197,6 +208,7 @@ class App extends Component {
             render={({ props }) => (
               <AddProductPage
                 user={this.state.user}
+                userStore={this.state.userStore}
                 handleAddProduct={this.handleAddProduct}
               />
             )}
@@ -210,6 +222,7 @@ class App extends Component {
                 handleDeleteProduct={this.handleDeleteProduct}
                 products={this.state.products}
                 user={this.state.user}
+                userStore={this.state.userStore}
               />
             )}
           />

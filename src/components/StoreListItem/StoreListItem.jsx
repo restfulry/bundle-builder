@@ -1,27 +1,25 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import styles from './StoreListItem.css'
 
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Card from 'react-bootstrap/Card'
+import {Row, Col, Card, Button} from 'react-bootstrap'
 
-function StoreListItem({ store }) {
+function StoreListItem({ store, user }) {
   return (
     <div>
-
-        <Card style={{ width: '18rem' }}>
-          <Card.Body>
-            <Card.Title>{store.storeName}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">{store.category}</Card.Subtitle>
-            <Card.Text>
+        <Card className="mx-auto card" style={{ width: '18rem' }}>
+          <Card.Body className="cardBody">
+            <Card.Title className="cardTitle">{store.storeName}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted cardSubtitle">{store.category}</Card.Subtitle>
+            <Card.Text className="cardText">
               {store.description}
             </Card.Text>
-            <Card.Link><Link to={{
+            <Card.Link><Button variant="success" style={{ backgroundColor: 'pink' }}><Link to={{
               pathname: '/shop/' + store.storeURL,
               state: {
-                store
+                store,
               }
-              }}>SHOP NOW</Link></Card.Link>
+              }}>SHOP NOW</Link></Button></Card.Link>
           </Card.Body>
         </Card>
 

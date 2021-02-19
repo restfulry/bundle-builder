@@ -2,21 +2,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductListItem from '../../components/ProductListItem/ProductListItem';
 
-function ProductIndexPage(props) {
-  console.log("Product Index Page: ", props.products)
+function ProductIndexPage({user, userStore, products, handleDeleteProduct}) {
+  console.log("Product Index Page: ", products)
+
+  // show all products that belong to userStore
+  // 
+
+
+  // function isAdmin() {
+  //   if(user.storeOwned.includes(store._id)){
+  //     return true
+  //   };
+  // };
 
   return (
     <div>
       <h1>Products Index</h1>
-      {props.user ?
+      {user ?
       <Link to="/admin/products/new">Add New Product</Link> : <div></div>}
       <div>
-        {props.products.map(product => 
+        {products.map(product => 
           <ProductListItem 
             product={product}
-            handleDeleteProduct={props.handleDeleteProduct} 
+            handleDeleteProduct={handleDeleteProduct} 
             key={product._id}
-            user={props.user}
+            user={user}
             />
         )}
       </div>

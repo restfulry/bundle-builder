@@ -16,16 +16,14 @@ async function create(req, res) {
     const product = await Product.create(req.body);
     console.log("Product CTRL Product: ", product);
 
-    const productId = await product._id;
-
-    console.log("Product CTRL req body", req.body);
+    const productId = product._id;
 
     Store.findById(req.body.productStore, (err, store) => {
       console.log("CTRL Store", store);
       store.products.push(productId);
       store.save();
+      res.status(201).json(product);
     });
-    res.status(201).json(product);
   } catch (err) {
     res.json({ err });
   }

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './NavBar.css';
+import styles from './NavBar.css';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 const NavBar = ({user, handleLogout}) => {
   let nav = user ?
     <div>
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="/">{user.name}</Navbar.Brand>
+        <Navbar.Brand href="/"><div className="navBrand">{user.name}</div></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -30,7 +30,7 @@ const NavBar = ({user, handleLogout}) => {
     :
     <div>
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="/">Bundler App</Navbar.Brand>
+        <Navbar.Brand className="navBrand" href="/">Bundler App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">

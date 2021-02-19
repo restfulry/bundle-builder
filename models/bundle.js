@@ -11,9 +11,9 @@ const bundleSchema = new Schema(
     minNumProducts: { type: Number, default: 0, min: 0 },
     maxNumProducts: { type: Number, default: 0, min: 0 },
     tags: [{ type: String }],
-    storeOwner: { type: Schema.Types.ObjectId, ref: "User" },
     requiredProducts: [{ type: Schema.Types.ObjectId, ref: "Product" }],
     eligibleProducts: [{ type: Schema.Types.ObjectId, ref: "Product" }],
+    bundleStore: { type: Schema.Types.ObjectId, ref: "Store" },
   },
   {
     timestamps: true,

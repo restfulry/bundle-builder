@@ -36,7 +36,7 @@ class AddBundlePage extends Component {
       value = e.target.value;
     };
 
-    const formData = {...this.state.formData, [e.target.name]: value, storeOwner: this.props.user._id};
+    const formData = {...this.state.formData, [e.target.name]: value, bundleStore: this.props.currentStore._id};
 
     this.setState({
       formData,
@@ -101,14 +101,22 @@ class AddBundlePage extends Component {
           <label>
             Required Products
           </label>
-            <select name="requiredProducts" value={[this.state.formData.requiredProducts]} onChange={this.handleChange} multiple={true}>
-            {this.props.products.map((product, idx) => <option key={product._id} value={product._id}>{product.productName}</option>)}
+            <select name="requiredProducts" 
+                    value={[this.state.formData.requiredProducts]} 
+                    onChange={this.handleChange} 
+                    multiple={true}>
+              {this.props.storeProducts.map((product, idx) => 
+              <option 
+                key={product._id} 
+                value={product._id}>
+                  {product.productName}
+              </option>)}
             </select>
 
           <label>
             Eligible Products
             <select name="eligibleProducts" value={[this.state.formData.eligibleProducts]} onChange={this.handleChange} multiple={true}>
-            {this.props.products.map((product, idx) => <option key={product._id} value={product._id}>{product.productName}</option>)}
+            {this.props.storeProducts.map((product, idx) => <option key={product._id} value={product._id}>{product.productName}</option>)}
             </select>
           </label>
 

@@ -2,12 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductListItem from '../../components/ProductListItem/ProductListItem';
 
-function ProductIndexPage({user, userStore, products, handleDeleteProduct}) {
-  console.log("Product Index Page: ", products)
+function ProductIndexPage({user, currentStore, handleDeleteProduct, storeProducts}) {
 
+  console.log('ProductIndexPage storeProducts', storeProducts)
+  console.log('ProductIndexPage currentStore', currentStore)
   // show all products that belong to userStore
-  // 
-
 
   // function isAdmin() {
   //   if(user.storeOwned.includes(store._id)){
@@ -21,11 +20,11 @@ function ProductIndexPage({user, userStore, products, handleDeleteProduct}) {
       {user ?
       <Link to="/admin/products/new">Add New Product</Link> : <div></div>}
       <div>
-        {products.map(product => 
+        {storeProducts.map(storeProduct => 
           <ProductListItem 
-            product={product}
+           storeProduct={storeProduct}
             handleDeleteProduct={handleDeleteProduct} 
-            key={product._id}
+            key={storeProduct._id}
             user={user}
             />
         )}

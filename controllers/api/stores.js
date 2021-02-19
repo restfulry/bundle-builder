@@ -1,5 +1,8 @@
 const Store = require("../../models/store");
 const User = require("../../models/user");
+const Product = require("../../models/product");
+const Bundle = require("../../models/bundle");
+
 const { createJWT } = require("../../config/auth");
 
 async function index(req, res) {
@@ -13,9 +16,10 @@ async function index(req, res) {
 
 async function getCurrent(req, res) {
   try {
-    console.log("STORES CTRL GETCURRENT: ", req);
     const currentStore = await Store.findById(req.params.id);
-    res.status(200).json(currentStore);
+    const storeProducts = await Product.find({ productStore: req.params.id });
+    const storeBundles = await Bundle.find({ bundleStore: req.params.id });
+    res.status(200).json({ currentStore, storeProducts, storeBundles });
   } catch (err) {
     res.json({ err });
   }

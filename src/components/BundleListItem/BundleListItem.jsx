@@ -1,31 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function BundleListItem({bundle, user, store, products}) {
+function BundleListItem({bundle, user, currentStore, products}) {
   return(
     <div className='panel'>
     <div className="panel-heading">
     <h3 className="panel-title">
-      {user ? 
       <Link className='btn' to={{pathname:'/admin/bundle/details', state: {bundle}}}>
         {bundle.bundleName}
-      </Link>     
-      : 
+      </Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp; ${bundle.price}  
+      </h3>
+
+
+    </div>
+    <div className="panel-footer">
       <Link className='btn' to={{
-        pathname:'/shop/' + store.storeURL + '/' + bundle.bundleName,
+        pathname:'/shop/' + currentStore.storeURL + '/' + bundle.bundleName,
         state: {
-          store,
+          currentStore,
           bundle,
           user,
           products
         }
-      }}/>
-      }
-
-        &nbsp;&nbsp;|&nbsp;&nbsp; ${bundle.price}  
-    </h3>
-    </div>
-    <div className="panel-footer">
+      }}>Shop Bundle</Link>
       {/* <Link className='btn' to={{pathname:'/admin/bundle/edit', state: {bundle, handleUpdateBundle}}}>Edit</Link> */}
       {/* &nbsp;&nbsp;|&nbsp;&nbsp; */}
       {/* <button className="btn" onClick={() => handleDeleteBundle(product._id)}>DELETE</button> */}

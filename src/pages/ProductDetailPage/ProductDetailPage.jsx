@@ -2,11 +2,11 @@ import React from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard'
 
 function ProductDetailPage(props) {
-  const product = props.location.state.product;
+  const storeProduct = props.location.state.storeProduct;
   return(
     <div>
       <h1>Product Details</h1>
-      <ProductCard key={product._id} product={product}/>
+      <ProductCard key={storeProduct._id} storeProduct={storeProduct}/>
     </div>
   );
 }

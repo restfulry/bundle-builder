@@ -1,20 +1,20 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-function ProductCard({product}) { 
+function ProductCard({storeProduct}) { 
   return (
     <div className='panel panel-default'>
       <div className="panel-heading">
-        <h3 className='panel-title'>{product.productName}</h3>
+        <h3 className='panel-title'>{storeProduct.productName}</h3>
       </div>
       <div className='panel-body'>
         <dl>
           <dt>Description</dt>
-          <dd>{product.description}</dd>
+          <dd>{storeProduct.description}</dd>
           <dt>Price</dt>
-          <dd>${product.price}</dd>
+          <dd>${storeProduct.price}</dd>
           <dt>Tags</dt>
-          <dd>{product.tags}</dd>
+          <dd>{storeProduct.tags}</dd>
         </dl>
       </div>
       <div className='panel-footer'>

@@ -67,7 +67,7 @@ class App extends Component {
     this.setState(
       (state) => ({
         allStores: [...state.allStores, store],
-        userStore: store,
+        currentStore: store,
         user: userService.getUser(),
       }),
       () => {
@@ -121,21 +121,31 @@ class App extends Component {
     );
   };
 
-  // handleGetStoreProducts = async (userStoreId) => {
-  //   await productsAPI.getStoreProducts(userStoreId);
-  //   this.setState()
-  // }
-
   /*--- Lifecycle Methods ---*/
 
   async componentDidMount() {
+    const storeID = this.state.user.storeOwned[0];
+
     const products = await productsAPI.getAll();
     const bundles = await bundlesAPI.getAll();
     const allStores = await storesAPI.getAll();
-    const currentStore = await storesAPI.getOne(this.state.user.storeOwned[0]);
-    this.setState({ products, bundles, allStores, currentStore });
+    const {
+      currentStore,
+      storeProducts,
+      storeBundles,
+    } = await storesAPI.getOne(storeID);
+
+    this.setState({
+      products,
+      bundles,
+      allStores,
+      currentStore,
+      storeProducts,
+      storeBundles,
+    });
+
     console.log("componentDidMount USER", this.state.user);
-    console.log("componentDidMount currentStore", this.state.currentStore);
+    console.log("componentDidMount State", this.state);
   }
 
   render() {
@@ -163,6 +173,7 @@ class App extends Component {
                 location={location}
                 match={match}
                 user={this.state.user}
+                storeProducts={this.state.storeProducts}
               />
             )}
           />
@@ -182,8 +193,10 @@ class App extends Component {
             render={({ props }) => (
               <AddBundlePage
                 user={this.state.user}
+                currentStore={this.state.currentStore}
                 handleAddBundle={this.handleAddBundle}
-                products={this.state.products}
+                storeBundles={this.state.storeBundles}
+                storeProducts={this.state.storeProducts}
               />
             )}
           />
@@ -192,8 +205,11 @@ class App extends Component {
             path="/admin/bundle/details"
             render={({ location }) => (
               <BundleDetailPage
+                user={this.state.user}
                 location={location}
-                products={this.state.products}
+                currentStore={this.state.currentStore}
+                storeBundles={this.state.storeBundles}
+                storeProducts={this.state.storeProducts}
               />
             )}
           />
@@ -202,9 +218,10 @@ class App extends Component {
             path="/admin/bundles"
             render={({ props }) => (
               <BundleIndexPage
-                bundles={this.state.bundles}
                 user={this.state.user}
-                products={this.state.products}
+                currentStore={this.state.currentStore}
+                storeBundles={this.state.storeBundles}
+                storeProducts={this.state.storeProducts}
               />
             )}
           />
@@ -214,7 +231,7 @@ class App extends Component {
             render={({ props }) => (
               <AddProductPage
                 user={this.state.user}
-                userStore={this.state.userStore}
+                currentStore={this.state.currentStore}
                 handleAddProduct={this.handleAddProduct}
               />
             )}
@@ -226,16 +243,21 @@ class App extends Component {
               <ProductIndexPage
                 handleUpdateProduct={this.handleUpdateProduct}
                 handleDeleteProduct={this.handleDeleteProduct}
-                products={this.state.products}
+                storeProducts={this.state.storeProducts}
                 user={this.state.user}
-                userStore={this.state.userStore}
+                currentStore={this.state.currentStore}
               />
             )}
           />
           <Route
             exact
             path="/admin/product/details"
-            render={({ location }) => <ProductDetailPage location={location} />}
+            render={({ location }) => (
+              <ProductDetailPage
+                location={location}
+                storeProducts={this.state.storeProducts}
+              />
+            )}
           />
           <Route
             exact
@@ -243,6 +265,7 @@ class App extends Component {
             render={({ location }) => (
               <EditProductPage
                 handleUpdateProduct={this.handleUpdateProduct}
+                storeProducts={this.state.storeProducts}
                 location={location}
               />
             )}

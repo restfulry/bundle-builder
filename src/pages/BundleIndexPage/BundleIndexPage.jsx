@@ -2,16 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import BundleListItem from '../../components/BundleListItem/BundleListItem'
 
-function BundleIndexPage(props) {
-  console.log("Bundle Index Page: ", props.bundles)
+function BundleIndexPage({storeBundles, storeProducts, currentStore, user}) {
+  console.log("Bundle Index Page: ", storeBundles)
   return (
     <div>
       <h1>Bundles Index</h1>
-      {props.user ?
-      <Link to="/admin/bundles/new">Create New Bundle</Link> : <div></div> }
+      <Link to="/admin/bundles/new">Create New Bundle</Link> 
+      {storeBundles ?
       <div>
-        {props.bundles.map((bundle) => <BundleListItem key={bundle._id} bundle={bundle}/>)}
+        {storeBundles.map((bundle) => <BundleListItem key={bundle._id} bundle={bundle} currentStore={currentStore} storeProducts={storeProducts}/>)}
       </div>
+      : <div>No Bundles Yet</div>
+      }
     </div>
   )
 };

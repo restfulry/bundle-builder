@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
+import styles from "./ShopBundlePage.css"
+
 import {Form, Button} from 'react-bootstrap'
 
 class ShopBundlePage extends Component { 

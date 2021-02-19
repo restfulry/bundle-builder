@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { withRouter } from "react-router";
 
+import {Form, Button} from 'react-bootstrap'
+
 class AddBundlePage extends Component {
   state={
     invalidForm: true,
@@ -11,7 +13,7 @@ class AddBundlePage extends Component {
       discountType: 'flat',
       discountAmount: 0,
       minNumProducts: 1,
-      maxNumProducts: 9999,
+      maxNumProducts: 999,
       tags: [],
       requiredProducts: [],
       eligibleProducts: [],
@@ -34,6 +36,7 @@ class AddBundlePage extends Component {
       value = this.updateRequiredOrEligible(e.target.name, e.target.value);
     } else {
       value = e.target.value;
+      console.log(value)
     };
 
     const formData = {...this.state.formData, [e.target.name]: value, bundleStore: this.props.currentStore._id};
@@ -57,9 +60,94 @@ class AddBundlePage extends Component {
     return (
       <div>
         <h1>Add Bundle</h1>
+        <Form>
+          <Form.Group>
+            <Form.Label>Name</Form.Label>
+            <Form.Control 
+              placeholder="Product Name" 
+              name="bundleName" 
+              type="bundleName" 
+              value={this.state.formData.bundleName} 
+              onChange={this.handleChange} 
+              required 
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Description</Form.Label>
+            <Form.Control 
+              placeholder="Description" 
+              name="description"
+              type="text"
+              as="textarea" 
+              value={this.state.formData.description} 
+              onChange={this.handleChange} 
+              rows={3} 
+              required
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Price</Form.Label>
+            <Form.Control 
+              placeholder="$" 
+              name="price"
+              type="number"
+              value={this.state.formData.price} 
+              onChange={this.handleChange} 
+              required
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Discount Amount</Form.Label>
+            <Form.Control 
+              placeholder="$" 
+              name="discountAmount"
+              type="number"
+              value={this.state.formData.discountAmount} 
+              onChange={this.handleChange} 
+              required
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Minimum Number of Products Required for Discount</Form.Label>
+            <Form.Control 
+              placeholder="0" 
+              name="minNumProducts"
+              type="number"
+              value={this.state.formData.minNumProducts} 
+              onChange={this.handleChange} 
+              required
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Maximum Number of Products in Bundle</Form.Label>
+            <Form.Control 
+              placeholder="999" 
+              name="maxNumProducts"
+              type="number"
+              value={this.state.formData.maxNumProducts} 
+              onChange={this.handleChange} 
+              required
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="Check me out" />
+          </Form.Group>
+
+          <Button variant="primary" type="submit" className="btn" disabled={this.state.invalidForm}>Add bundle
+          </Button>
+
+        </Form>
+
+
 
         <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
-          
+{/*           
           <div className="form-group">
             <label>Name</label>
             <input className="form-control" name="bundleName" value={this.state.formData.bundleName} onChange={this.handleChange} required />
@@ -72,23 +160,23 @@ class AddBundlePage extends Component {
 
           <div className="form-group">
             <label>Price</label>
-            <input className="form-control" name="price" value={this.state.formData.price} onChange={this.handleChange} required />
+            <input className="form-control" name="price" value={this.state.formData.price} onChange={this.handleChange} type="number" required />
           </div>
 
           <div className="form-group">
             <label>Discount Amount</label>
-            <input className="form-control" name="discountAmount" value={this.state.formData.discountAmount} onChange={this.handleChange} required />
+            <input className="form-control" name="discountAmount" value={this.state.formData.discountAmount} onChange={this.handleChange} type="number" required />
           </div>
 
           <div className="form-group">
             <label>Minimum Number of Products Required for Discount</label>
-            <input className="form-control" name="minNumProducts" value={this.state.formData.minNumProducts} onChange={this.handleChange}/>
+            <input className="form-control" name="minNumProducts" value={this.state.formData.minNumProducts} onChange={this.handleChange} type="number"/>
           </div>
 
           <div className="form-group">
             <label>Maximum Number of Products in Bundle</label>
-            <input className="form-control" name="maxNumProducts" value={this.state.formData.maxNumProducts} onChange={this.handleChange}/>
-          </div>
+            <input className="form-control" name="maxNumProducts" value={this.state.formData.maxNumProducts} onChange={this.handleChange} type="number"/>
+          </div> */}
 
           <label>
             Select Discount Type

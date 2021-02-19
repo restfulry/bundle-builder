@@ -51,7 +51,7 @@ class AddProductPage extends Component {
 
           <div className="form-group">
             <label>Price</label>
-            <input className="form-control" name="price" value={this.state.formData.price} onChange={this.handleChange} required />
+            <input className="form-control" name="price" value={this.state.formData.price} onChange={this.handleChange} type="number" required />
           </div>
 
           <div className="form-group">

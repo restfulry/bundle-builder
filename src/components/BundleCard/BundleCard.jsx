@@ -20,11 +20,11 @@ function BundleCard({bundle, products, requiredBundleProducts,productsInBundle})
 
           <dt>Required Products</dt>
             {requiredBundleProducts.map((product) => <dd>
-              <Link className='btn' key={product._id} to={{pathname:'/admin/product/details', state: {product}}}>{product.productName}</Link>
+              <Link className='btn' to={{pathname:'/admin/product/details', state: {product}}}>{product.productName}</Link>
             </dd>)}
 
           <dt>Eligible Products</dt>
-            {productsInBundle.map((product) => <dd><Link className='btn' key={product._id} to={{pathname:'/admin/product/details', state: {product}}}>{product.productName}</Link></dd>)}
+            {productsInBundle.map((product) => <dd><Link className='btn' to={{pathname:'/admin/product/details', state: {product}}}>{product.productName}</Link></dd>)}
 
           <dt>Discount Amount</dt>
             <dd>{bundle.discountAmount}</dd>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Link, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import * as storesAPI from "../../services/stores-api";
@@ -20,7 +20,7 @@ import userService from "../../utils/userService";
 import tokenService from "../../utils/tokenService";
 
 import StoresIndexPage from "../StoresIndexPage/StoresIndexPage";
-import ShopPage from "../ShopPage/ShopPage";
+import StoreHomePage from "../StoreHomePage/StoreHomePage";
 
 import ProductIndexPage from "../ProductIndexPage/ProductIndexPage";
 import ProductDetailPage from "../ProductDetailPage/ProductDetailPage";
@@ -31,6 +31,7 @@ import BundleIndexPage from "../BundleIndexPage/BundleIndexPage";
 import BundleDetailPage from "../BundleDetailPage/BundleDetailPage";
 import AddBundlePage from "../AddBundlePage/AddBundlePage";
 import ShopBundlePage from "../ShopBundlePage/ShopBundlePage";
+import ShopBundlesIndexPage from "../ShopBundlesIndexPage/ShopBundlesIndexPage";
 
 class App extends Component {
   constructor() {
@@ -94,11 +95,14 @@ class App extends Component {
       selectedStoreBundles,
     } = await storesAPI.getCustomerOne(store._id);
 
-    this.setState({
-      selectedStore,
-      selectedStoreProducts,
-      selectedStoreBundles,
-    });
+    this.setState(
+      (state) => ({
+        selectedStore,
+        selectedStoreProducts,
+        selectedStoreBundles,
+      }),
+      () => this.props.history.push("/")
+    );
   };
 
   //----------- PRODUCT HANDLER -----------//
@@ -141,6 +145,7 @@ class App extends Component {
     const storeID = () => {
       if (this.state.user) return this.state.user.storeOwned[0];
     };
+
     const {
       currentStore,
       storeProducts,
@@ -171,7 +176,7 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path="/shop/:currentStore/:selectedBundle"
+            path="/shop/:currentStore/bundles/:selectedBundle"
             render={({ location, match, user, products }) => (
               <ShopBundlePage
                 location={location}
@@ -183,9 +188,21 @@ class App extends Component {
           />
           <Route
             exact
+            path="/shop/:currentStore/bundles"
+            render={({ location, match, user, products }) => (
+              <ShopBundlesIndexPage
+                location={location}
+                match={match}
+                user={user}
+                products={products}
+              />
+            )}
+          />
+          <Route
+            exact
             path="/shop/:selectedStore"
             render={({ location, match, handleGetStoreBundles }) => (
-              <ShopPage
+              <StoreHomePage
                 location={location}
                 match={match}
                 user={this.state.user}
@@ -196,9 +213,10 @@ class App extends Component {
           <Route
             exact
             path="/shop"
-            render={() => (
+            render={({ location, handleGetStoreBundles }) => (
               <StoresIndexPage
-                handleGetStoreBundles={this.handleGetStoreBundles}
+                location={location}
+                handleGetStoreBundles={handleGetStoreBundles}
                 allStores={this.state.allStores}
                 user={this.state.user}
               />

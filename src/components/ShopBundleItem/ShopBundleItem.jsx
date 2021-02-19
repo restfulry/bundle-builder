@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import {Card, Button} from 'react-bootstrap'
 
-function ShopBundleItem({bundle, store, products}) {
+function ShopBundleItem({bundle, store}) {
   return(
       <div>
         <Card className="mx-auto card" style={{ width: '18rem' }}>

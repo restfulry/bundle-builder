@@ -17,18 +17,19 @@ function ProductIndexPage({user, currentStore, handleDeleteProduct, storeProduct
   return (
     <div>
       <h1>Products Index</h1>
-      {user ?
-      <Link to="/admin/products/new">Add New Product</Link> : <div></div>}
-      <div>
-        {storeProducts.map(storeProduct => 
-          <ProductListItem 
-           storeProduct={storeProduct}
-            handleDeleteProduct={handleDeleteProduct} 
-            key={storeProduct._id}
-            user={user}
-            />
-        )}
-      </div>
+      <Link to="/admin/products/new">Add New Product</Link> 
+      {storeProducts ?
+        <div>
+          {storeProducts.map(storeProduct => 
+            <ProductListItem 
+            storeProduct={storeProduct}
+              handleDeleteProduct={handleDeleteProduct} 
+              key={storeProduct._id}
+              user={user}
+              />
+          )}
+        </div>
+      : <div> No Products Yet :(</div>}
     </div>
   )
 };

@@ -8,6 +8,10 @@ export function getOne(storeId) {
   return fetch(`${BASE_URL}/${storeId}`).then((res) => res.json());
 }
 
+export function getCustomerOne(storeId) {
+  return fetch(`${BASE_URL}/shop/${storeId}`).then((res) => res.json());
+}
+
 export function create(store) {
   return fetch(BASE_URL, {
     method: "POST",

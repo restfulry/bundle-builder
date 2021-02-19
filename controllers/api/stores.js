@@ -25,9 +25,26 @@ async function getCurrent(req, res) {
   }
 }
 
+async function getCustomerCurrent(req, res) {
+  try {
+    const selectedStore = await Store.findById(req.params.id);
+    const selectedStoreProducts = await Product.find({
+      productStore: req.params.id,
+    });
+    const selectedStoreBundles = await Bundle.find({
+      bundleStore: req.params.id,
+    });
+    console.log("Stores controller req params", selectedStoreBundles);
+    res
+      .status(200)
+      .json({ selectedStore, selectedStoreProducts, selectedStoreBundles });
+  } catch (err) {
+    res.json({ err });
+  }
+}
+
 async function show(req, res) {
   const store = await Store.findById(req.params.storeName);
-  console.log("controller req params", store);
   res.status(200).json(store);
 }
 
@@ -57,4 +74,5 @@ module.exports = {
   create,
   show,
   getCurrent,
+  getCustomerCurrent,
 };

@@ -6,7 +6,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 const NavBar = ({user, handleLogout}) => {
   let nav = user ?
-    <div>
+
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="/"><div className="navBrand">{user.name}</div></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -26,9 +26,9 @@ const NavBar = ({user, handleLogout}) => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-    </div>
+
     :
-    <div>
+
       <Navbar bg="light" expand="lg">
         <Navbar.Brand className="navBrand" href="/">Bundler App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -46,13 +46,9 @@ const NavBar = ({user, handleLogout}) => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-    </div>
+
     
-    return (
-      <div className='NavBar'>
-        {nav}
-      </div>
-    )
+    return nav
 }
 
 export default NavBar;

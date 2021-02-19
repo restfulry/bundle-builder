@@ -87,6 +87,20 @@ class App extends Component {
     );
   };
 
+  handleGetStoreBundles = async (store) => {
+    const {
+      selectedStore,
+      selectedStoreProducts,
+      selectedStoreBundles,
+    } = await storesAPI.getCustomerOne(store._id);
+
+    this.setState({
+      selectedStore,
+      selectedStoreProducts,
+      selectedStoreBundles,
+    });
+  };
+
   //----------- PRODUCT HANDLER -----------//
   handleAddProduct = async (newProductData) => {
     const newProduct = await productsAPI.create(newProductData);
@@ -124,16 +138,18 @@ class App extends Component {
   /*--- Lifecycle Methods ---*/
 
   async componentDidMount() {
-    const storeID = this.state.user.storeOwned[0];
-
-    const products = await productsAPI.getAll();
-    const bundles = await bundlesAPI.getAll();
-    const allStores = await storesAPI.getAll();
+    const storeID = () => {
+      if (this.state.user) return this.state.user.storeOwned[0];
+    };
     const {
       currentStore,
       storeProducts,
       storeBundles,
-    } = await storesAPI.getOne(storeID);
+    } = await storesAPI.getOne(storeID());
+
+    const products = await productsAPI.getAll();
+    const bundles = await bundlesAPI.getAll();
+    const allStores = await storesAPI.getAll();
 
     this.setState({
       products,
@@ -167,13 +183,13 @@ class App extends Component {
           />
           <Route
             exact
-            path="/shop/:currentStore"
-            render={({ location, match }) => (
+            path="/shop/:selectedStore"
+            render={({ location, match, handleGetStoreBundles }) => (
               <ShopPage
                 location={location}
                 match={match}
                 user={this.state.user}
-                storeProducts={this.state.storeProducts}
+                handleGetStoreBundles={handleGetStoreBundles}
               />
             )}
           />
@@ -182,6 +198,7 @@ class App extends Component {
             path="/shop"
             render={() => (
               <StoresIndexPage
+                handleGetStoreBundles={this.handleGetStoreBundles}
                 allStores={this.state.allStores}
                 user={this.state.user}
               />

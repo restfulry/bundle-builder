@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function BundleListItem({bundle, user, currentStore, products}) {
+  console.log("BundlelistItem : ", products)
   return(
     <div className='panel'>
     <div className="panel-heading">
@@ -10,10 +11,9 @@ function BundleListItem({bundle, user, currentStore, products}) {
         {bundle.bundleName}
       </Link>
       &nbsp;&nbsp;|&nbsp;&nbsp; ${bundle.price}  
-      </h3>
-
-
+    </h3>
     </div>
+
     <div className="panel-footer">
       <Link className='btn' to={{
         pathname:'/shop/' + currentStore.storeURL + '/' + bundle.bundleName,

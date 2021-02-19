@@ -12,7 +12,7 @@ function ShopBundleIndexPage({location}) {
   return (
     <div>
       <h1>Bundles Index</h1>
-      {bundles.map(bundle => <ShopBundleItem key={bundle._id} bundle={bundle} store={store}/>)}
+      {bundles.map(bundle => <ShopBundleItem key={bundle._id} bundle={bundle} store={store} products={products}/>)}
     </div>
   )
 };

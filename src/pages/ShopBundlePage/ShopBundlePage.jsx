@@ -1,42 +1,44 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
-class ShopBundlePage extends Component {
+import {Form, Button} from 'react-bootstrap'
+
+class ShopBundlePage extends Component { 
   state = {
-    invalidForm: true,
-    formData: {
-    }
-  };
-
-  formRef = React.createRef();
-
+    bundle: this.props.location.state.bundle,
+    products: this.props.location.state.productsInBundle,
+  }
+  
   handleSubmit = e => {
     e.preventDefault();
-    this.props.handleBuyBundle(this.state.formData);
-  } 
+    this.props.handleAddBundle(this.state.formData);
+  }
 
   handleChange = e => {
-    const formData = {...this.state.formData,
-    [e.target.name]: e.target.value, createdBy: this.props.user._id, productStore: this.props.user.storeOwned[0]};
-    console.log('handleChange form Data: ', this.props.user)
+    e.preventDefault();
+
+    let value = e.target.value;
+
+    const formData = {...this.state.formData, [e.target.name]: value};
+
     this.setState({
       formData,
       invalidForm: !this.formRef.current.checkValidity()
-    });
+    })
   };
 
   render() {
+    const {bundle, products} = this.state;
+    console.log("ShopBundlePage: ", products)
     return (
       <div>
         <h1>Build Your Bundle</h1>
-        <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
-          {console.log(this.props)}
-        {/* {this.props.products.map(product => 
-          <div>{product.productName}</div>
-        )} */}
+        <h2>${bundle.price}</h2>
+        <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
 
-          <button type="submit" className="btn" disabled={this.state.invalidForm}>Buy Now</button>
-        </form>
+
+          
+        </Form>
       </div>
     )
   }

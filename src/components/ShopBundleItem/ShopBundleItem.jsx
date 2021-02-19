@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 
 import {Card, Button} from 'react-bootstrap'
 
-function ShopBundleItem({bundle, store}) {
+function ShopBundleItem({bundle, store, products}) {
+
+  console.log("SHOPBUNDLEITEM BUNDLE", bundle)
+  console.log("SHOPBUNDLEITEM Product", products)
+  
+  const productsInBundle = products.filter(product => bundle.eligibleProducts.includes(product._id))
+  
+  console.log("SHOPBUNDLEITEM ProductsInBundle", productsInBundle)
   return(
       <div>
         <Card className="mx-auto card" style={{ width: '18rem' }}>
@@ -14,9 +21,11 @@ function ShopBundleItem({bundle, store}) {
               {bundle.description}
             </Card.Text>
             <Card.Link><Button variant="success" style={{ backgroundColor: 'pink' }}><Link to={{
-              pathname: '/shop/' + store.storeURL,
+              pathname: '/shop/' + store.storeURL + '/bundles/' + bundle.bundleName,
               state: {
                 store,
+                bundle,
+                productsInBundle
               }
               }}>BUY NOW</Link></Button></Card.Link>
           </Card.Body>

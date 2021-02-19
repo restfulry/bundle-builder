@@ -30,7 +30,18 @@ async function login(req, res) {
   }
 }
 
+async function index(req, res) {
+  try {
+    console.log("users ctrl req body: ", req);
+    const userStore = await Store.findById(req.params.user.userStore[0]);
+    res.status(200).json(userStore);
+  } catch (err) {
+    res.json({ err });
+  }
+}
+
 module.exports = {
   signup,
   login,
+  index,
 };

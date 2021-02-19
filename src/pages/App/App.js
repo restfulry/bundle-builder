@@ -5,6 +5,7 @@ import "./App.css";
 import * as storesAPI from "../../services/stores-api";
 import * as productsAPI from "../../services/products-api";
 import * as bundlesAPI from "../../services/bundles-api";
+import * as usersAPI from "../../services/users-api";
 
 import NavBar from "../../components/NavBar/NavBar";
 
@@ -120,16 +121,21 @@ class App extends Component {
     );
   };
 
+  // handleGetStoreProducts = async (userStoreId) => {
+  //   await productsAPI.getStoreProducts(userStoreId);
+  //   this.setState()
+  // }
+
   /*--- Lifecycle Methods ---*/
 
   async componentDidMount() {
     const products = await productsAPI.getAll();
     const bundles = await bundlesAPI.getAll();
     const allStores = await storesAPI.getAll();
-    const userStore = await usersAPI.getOne();
-    this.setState({ products, bundles, allStores });
+    const currentStore = await storesAPI.getOne(this.state.user.storeOwned[0]);
+    this.setState({ products, bundles, allStores, currentStore });
     console.log("componentDidMount USER", this.state.user);
-    console.log("componentDidMount state", this.state);
+    console.log("componentDidMount currentStore", this.state.currentStore);
   }
 
   render() {
@@ -163,7 +169,7 @@ class App extends Component {
           <Route
             exact
             path="/shop"
-            render={({ props }) => (
+            render={() => (
               <StoresIndexPage
                 allStores={this.state.allStores}
                 user={this.state.user}

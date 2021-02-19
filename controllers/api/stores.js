@@ -11,6 +11,16 @@ async function index(req, res) {
   }
 }
 
+async function getCurrent(req, res) {
+  try {
+    console.log("STORES CTRL GETCURRENT: ", req);
+    const currentStore = await Store.findById(req.params.id);
+    res.status(200).json(currentStore);
+  } catch (err) {
+    res.json({ err });
+  }
+}
+
 async function show(req, res) {
   const store = await Store.findById(req.params.storeName);
   console.log("controller req params", store);
@@ -42,4 +52,5 @@ module.exports = {
   index,
   create,
   show,
+  getCurrent,
 };

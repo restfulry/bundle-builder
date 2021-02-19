@@ -7,6 +7,7 @@ async function index(req, res) {
 }
 
 async function show(req, res) {
+  console.log("Product CTRL SHOW: ", req);
   const product = await Product.findById(req.params.id);
   res.status(200).json(product);
 }

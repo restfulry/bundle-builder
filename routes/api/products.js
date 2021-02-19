@@ -7,7 +7,7 @@ router.get("/:id", productsCtrl.show);
 
 /*---------- Protected Routes ----------*/
 router.use(require("../../config/auth").setUser);
-router.post("/", checkAuth, productsCtrl.create);
+router.post("/", productsCtrl.create);
 router.delete("/:id", productsCtrl.delete);
 router.put("/:id", productsCtrl.update);
 

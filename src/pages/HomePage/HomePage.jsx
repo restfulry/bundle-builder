@@ -2,11 +2,9 @@ import React from 'react';
 import styles from './HomePage.css'
 
 import { Link } from 'react-router-dom';
-import {Jumbotron, Button} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 
 function HomePage() {
-
-
   return (
     <div>
       <div className="hero">

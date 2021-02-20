@@ -1,5 +1,6 @@
 import React, {Component, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
+import styles from './StoreHomePage.css'
 
 import * as storesAPI from "../../services/stores-api";
 
@@ -35,8 +36,8 @@ class StoreHomePage extends Component {
       return (
         <div>
           <h1>Welcome to {this.state.store.storeName}</h1>
-          <Button>
-            <Link to={{
+          <Button variant="success" style={{ backgroundColor: 'pink' }} >
+            <Link className="link" to={{
                     pathname: '/shop/' + this.state.store.storeURL + '/bundles',
                     state: {
                       selectedStore: this.state.selectedStore,

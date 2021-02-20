@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import styles from "./ShopBundlePage.css"
 
-import {Form, Card, Row, Col, Button} from 'react-bootstrap'
+import {Form, Card, Row, Col, Button, Container} from 'react-bootstrap'
 
 class ShopBundlePage extends Component { 
   state = {
@@ -96,37 +96,41 @@ class ShopBundlePage extends Component {
 
         <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
         <Row>
+
           <Col>
-          {products.map((product,idx) => 
+          {/* Products Menu */}
+            {products.map((product,idx) => 
 
-            <div className="productDisplay" key={idx}>
+              <div className="productDisplay" key={idx}>
 
-              <Card className="mx-auto card" style={{ width: '18rem' }}>
-                <Card.Body className="cardBody">
-                  
-                  <Card.Title className="cardTitle">{product.productName}</Card.Title>
-                  
-                  <Card.Text className="cardText">
-                    {product.description}
-                  </Card.Text>
-                  
-                  <Card.Link>
-                    <Button 
-                      name="productsSelected" 
-                      key={product._id} 
-                      value={product._id} 
-                      onClick={this.handleChange}
-                      size="sm"
-                      variant="dark"
-                      >
-                      ADD ({this.productQtySelected(`${product._id}`)})
-                    </Button>
-                  </Card.Link>
-                </Card.Body>
-              </Card>
-            </div>
-          )}
+                <Card className="mx-auto card" style={{ width: '18rem' }}>
+                  <Card.Body className="cardBody">
+                    
+                    <Card.Title className="cardTitle">{product.productName}</Card.Title>
+                    
+                    <Card.Text className="cardText">
+                      {product.description}
+                    </Card.Text>
+                    
+                    <Card.Link>
+                      <Button 
+                        name="productsSelected" 
+                        key={product._id} 
+                        value={product._id} 
+                        onClick={this.handleChange}
+                        size="sm"
+                        variant="dark"
+                        >
+                        ADD ({this.productQtySelected(`${product._id}`)})
+                      </Button>
+                    </Card.Link>
+                  </Card.Body>
+                </Card>
+              </div>
+            )}
           </Col>
+
+
           <Col>
             <h1>Your Bundle</h1>
             {productsSelected.map((selectedProduct, idx)=>
@@ -134,7 +138,6 @@ class ShopBundlePage extends Component {
                 {this.getSelectedProductName(selectedProduct, idx)}
               </div>
             )}
-
 
           {/* Add to Cart Button */}
               {this.remainingChoices() === 0 ? 

@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ShopBundleItem from '../../components/ShopBundleItem/ShopBundleItem'
 
+import {Row, Container} from 'react-bootstrap';
+
 function ShopBundleIndexPage({location}) {
   const store = location.state.selectedStore;
   const bundles = location.state.selectedStoreBundles;
@@ -10,10 +12,12 @@ function ShopBundleIndexPage({location}) {
   console.log("Bundle Index Page: ", store)
 
   return (
-    <div>
+      <Container fluid="xl">
       <h1>Bundles Index</h1>
-      {bundles.map(bundle => <ShopBundleItem key={bundle._id} bundle={bundle} store={store} products={products}/>)}
-    </div>
+        <Row>
+          {bundles.map(bundle => <ShopBundleItem key={bundle._id} bundle={bundle} store={store} products={products}/>)}
+        </Row>
+      </Container>
   )
 };
 

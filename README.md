@@ -8,7 +8,7 @@ A store can sign up and add their product catalog, then set a build-it-yourself 
 
 Shoppers can browse the stores and build their own bundles.
 
-## [Launch App](https://product-bundle-builder.herokuapp.com/shop/demobakery/bundles/Bakery%20Bundle%20Trio)
+## [Launch App](https://product-bundle-builder.herokuapp.com/)
 
 ## App Screenshots
 
@@ -25,7 +25,7 @@ Shoppers can browse the stores and build their own bundles.
 - JWT Auth
 - bcrypt
 - HTML, CSS, & Bootstrap
-- Launched on Heroku
+- Deployed on Heroku
 
 ## Getting Started
 
@@ -40,5 +40,6 @@ Shoppers: Browse your favorite stores. Choose your desired bundle and build it.
 - Allow stores to update and delete bundles
 - Add product images
 - Implement price calculation based on bundle details
+- Allow shopper to remove items from bundle
 
 ## [Wireframe, ERD, Project Management](https://www.notion.so/7ddc6a2c6bbe46c6a1da9c840bdd5012?v=902512f7371a4b49a363a7b4bb745a77)

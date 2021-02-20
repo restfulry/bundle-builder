@@ -6,8 +6,6 @@ import styles from './StoresIndexPage.css'
 import {Container, CardDeck} from 'react-bootstrap';
 
 function StoresIndexPage({allStores, user, handleGetStoreBundles}) {
-  console.log("Store Index Page: ", allStores)
-
   return (
     <div className="contentBody">
       <h1>Something for everyone!</h1>

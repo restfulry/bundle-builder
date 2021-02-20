@@ -15,12 +15,9 @@ async function create(req, res) {
     const bundle = await Bundle.create(req.body);
     const bundleId = bundle._id;
 
-    console.log("Bundles CTRL: ", bundle);
-
     Store.findById(req.body.bundleStore, (err, store) => {
       store.bundles.push(bundleId);
       store.save();
-      console.log("CTRL Store", store);
       res.status(201).json(bundle);
     });
   } catch (err) {

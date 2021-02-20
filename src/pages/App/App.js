@@ -164,9 +164,6 @@ class App extends Component {
       storeProducts,
       storeBundles,
     });
-
-    console.log("componentDidMount USER", this.state.user);
-    console.log("componentDidMount State", this.state);
   }
 
   render() {

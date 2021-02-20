@@ -29,7 +29,6 @@ class StoreHomePage extends Component {
       selectedStoreProducts,
       selectedStoreBundles,
     });
-    console.log("StoreHomePage CDM: ", this.state)
   }
     
     render() {

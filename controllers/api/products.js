@@ -14,12 +14,9 @@ async function show(req, res) {
 async function create(req, res) {
   try {
     const product = await Product.create(req.body);
-    console.log("Product CTRL Product: ", product);
-
     const productId = product._id;
 
     Store.findById(req.body.productStore, (err, store) => {
-      console.log("CTRL Store", store);
       store.products.push(productId);
       store.save();
       res.status(201).json(product);

@@ -25,8 +25,6 @@ class AddProductPage extends Component {
     const formData = {...this.state.formData,
     [e.target.name]: e.target.value, createdBy: this.props.user._id, productStore: this.props.user.storeOwned[0]};
 
-    console.log('handleChange form Data: ', this.props.user.storeOwned[0])
-
     this.setState({
       formData,
       invalidForm: !this.formRef.current.checkValidity()

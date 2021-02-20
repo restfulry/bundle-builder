@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import BundleListItem from '../../components/BundleListItem/BundleListItem'
 
 function BundleIndexPage({storeBundles, storeProducts, currentStore, user}) {
-  console.log("Bundle Index Page: ", storeBundles)
   return (
     <div>
       <h1>Bundles Index</h1>

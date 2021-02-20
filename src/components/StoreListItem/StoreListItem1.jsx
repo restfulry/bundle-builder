@@ -16,7 +16,6 @@ class StoreListItem extends Component {
   handleClick = (e) => {
     e.preventDefault();
     const storeId = e.target.name;
-    console.log("STORELISTITEM1 storeId: ", storeId)
 
     const {
       selectedStore,
@@ -29,7 +28,6 @@ class StoreListItem extends Component {
       selectedStoreProducts,
       selectedStoreBundles,
     });
-    console.log("StoreListItem CDM: ", this.state)
   }
   
   render() {

@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import ProductListItem from '../../components/ProductListItem/ProductListItem';
 
 function ProductIndexPage({user, currentStore, handleDeleteProduct, handleUpdateProduct, storeProducts}) {
-
-  console.log('ProductIndexPage storeProducts', storeProducts)
-  console.log('ProductIndexPage currentStore', currentStore)
   // show all products that belong to userStore
 
   // function isAdmin() {

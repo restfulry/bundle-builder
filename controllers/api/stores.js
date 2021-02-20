@@ -34,7 +34,6 @@ async function getCustomerCurrent(req, res) {
     const selectedStoreBundles = await Bundle.find({
       bundleStore: req.params.id,
     });
-    console.log("Stores controller req params", selectedStoreBundles);
     res
       .status(200)
       .json({ selectedStore, selectedStoreProducts, selectedStoreBundles });

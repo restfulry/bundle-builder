@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function BundleListItem({bundle, user, currentStore, products}) {
-  console.log("BundlelistItem : ", products)
   return(
     <div className='panel'>
     <div className="panel-heading">

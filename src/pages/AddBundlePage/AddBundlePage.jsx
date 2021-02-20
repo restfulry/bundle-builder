@@ -36,7 +36,6 @@ class AddBundlePage extends Component {
       value = this.updateRequiredOrEligible(e.target.name, e.target.value);
     } else {
       value = e.target.value;
-      console.log(value)
     };
 
     const formData = {...this.state.formData, [e.target.name]: value, bundleStore: this.props.currentStore._id};
@@ -48,7 +47,6 @@ class AddBundlePage extends Component {
   };
 
   updateRequiredOrEligible(type, product) {
-    console.log(product)
     if (this.state.formData[type].includes(product)) {
       return [...this.state.formData[type]];
     } else {
@@ -180,7 +178,7 @@ class AddBundlePage extends Component {
 
           <label>
             Select Discount Type
-            <select name="discountType" value={this.state.formData.discountType} onChange={e => {console.log(e);this.handleChange(e)}} required>
+            <select name="discountType" value={this.state.formData.discountType} onChange={e => {this.handleChange(e)}} required>
               <option value="flat">Flat Discount</option>
               <option value="tiered">Tiered</option>
             </select>

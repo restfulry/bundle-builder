@@ -29,12 +29,7 @@ class ShopBundlePage extends Component {
 
     let targetKey = e.target.name;
     let targetValue = e.target.value;
-
     let value = this.updateProductsSelected(targetKey, targetValue)
-
-    console.log('products', this.state.products);
-    console.log('e targetValue', targetValue);
-    console.log('maxnUmProducts', this.state.bundle.maxNumProducts);
     
     const formData = {...this.state.formData, [targetKey]: value};
     
@@ -78,8 +73,6 @@ class ShopBundlePage extends Component {
 
     let selectedProductName = productsCatalog.filter((product) => product._id === selectedProductID)[0].productName; 
 
-    console.log("getSelectedProductName", selectedProductName)
-
     return selectedProductName;
   }
   // if product in productsSelected, display count
@@ -88,7 +81,6 @@ class ShopBundlePage extends Component {
     const {bundle, products, store, productsInBundle} = this.state;
     const {productsSelected} = this.state.formData;
 
-    console.log("ShopBundlePage: ", products)
     return (
       <div className="bundle-builder">
         <div className="header">

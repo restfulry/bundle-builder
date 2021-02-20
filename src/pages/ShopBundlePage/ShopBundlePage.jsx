@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import styles from "./ShopBundlePage.css"
 
-import {Form, Row, Col, Button} from 'react-bootstrap'
+import {Form, Card, Col, Button} from 'react-bootstrap'
 
 class ShopBundlePage extends Component { 
   state = {
@@ -75,18 +75,9 @@ class ShopBundlePage extends Component {
     const {bundle, products} = this.state;
     console.log("ShopBundlePage: ", products)
     return (
-      <div>
+      <div className="bundle-builder">
         <h1>Build Your Bundle</h1>
         <h2>${bundle.price}</h2>
-
-        {this.remainingChoices() === 0 ? <h3>All Set!     <Button variant="primary" type="submit" className="btn" disabled={this.state.invalidForm}>Add to Cart</Button></h3>
-        :<div></div>
-        }
-        {this.remainingChoices() === 1 ?
-          <h3>Choose {this.remainingChoices()} More Item:</h3>
-        : 
-          <h3>Choose {this.remainingChoices()} More Items:</h3> 
-        }
 
         <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
 
@@ -94,21 +85,68 @@ class ShopBundlePage extends Component {
 
             <div className="productDisplay" key={idx}>
 
-              <h3>{product.productName}</h3>
+              <Card className="mx-auto card" style={{ width: '18rem' }}>
+                <Card.Body className="cardBody">
+                  
+                  <Card.Title className="cardTitle">{product.productName}</Card.Title>
+                  
+                  <Card.Text className="cardText">
+                    {product.description}
+                  </Card.Text>
+                  
+                  <Card.Link>
+                    <Button 
+                      name="productsSelected" 
+                      key={product._id} 
+                      value={product._id} 
+                      onClick={this.handleChange}
+                      size="sm"
+                      variant="dark"
+                      >
+                      ADD ({this.productQtySelected(`${product._id}`)})
+                    </Button>
+                  </Card.Link>
+                </Card.Body>
+              </Card>
 
-              <Button 
-                name="productsSelected" 
-                key={product._id} 
-                value={product._id} 
-                onClick={this.handleChange}>
-                Add ({this.productQtySelected(`${product._id}`)})
-              </Button>
+
 
             </div>
           )}
 
-          <Button variant="primary" type="submit" className="btn" disabled={this.state.invalidForm}>Add to Cart</Button>
-          
+        {this.remainingChoices() === 0 ? 
+        <h3 className="btn-add-to-cart">
+            <Button
+              variant="success" 
+              type="submit" 
+              className="btn" 
+              disabled={this.state.invalidForm}>
+                All set! Add to Cart
+            </Button>
+          </h3>
+          :<div></div>
+        }
+        {this.remainingChoices() === 1 ?
+          <h3 className="btn-add-to-cart">
+            <Button
+              variant="outline-danger" 
+              type="submit" 
+              className="btn" 
+              disabled={true}>
+                Choose {this.remainingChoices()} More Item
+            </Button>
+          </h3>
+        : 
+          <h3 className="btn-add-to-cart">
+            <Button
+              variant="outline-danger" 
+              type="submit" 
+              className="btn" 
+              disabled={true}>
+                Choose {this.remainingChoices()} More Items
+            </Button>
+          </h3>
+        }
         </Form>
       </div>
     )

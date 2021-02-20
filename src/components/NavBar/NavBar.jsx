@@ -13,10 +13,10 @@ const NavBar = ({user, handleLogout}) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <NavDropdown.Item>
-                <Link to={{pathname: "/admin/bundles", user}}>My Bundles</Link>
+                <Link to={{pathname: "/admin/bundles", user}} className="NavBar-link">My Bundles</Link>
             </NavDropdown.Item>
             <Nav.Link>
-              <Link to="/admin/products" user={user}>My Products</Link>
+              <Link to="/admin/products" user={user} className="NavBar-link">My Products</Link>
             </Nav.Link>
             <Nav.Link>
               <Link to="" className="NavBar-link" onClick={handleLogout}>

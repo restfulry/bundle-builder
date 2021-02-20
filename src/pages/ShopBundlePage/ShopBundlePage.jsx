@@ -34,6 +34,7 @@ class ShopBundlePage extends Component {
 
     console.log('e targetKey', targetKey);
     console.log('e targetValue', targetValue);
+    console.log('maxnUmProducts', this.state.bundle.maxNumProducts);
 
     const formData = {...this.state.formData, [targetKey]: value};
 
@@ -45,8 +46,17 @@ class ShopBundlePage extends Component {
   };
 
   updateProductsSelected(key, product) {
-    return [...this.state.formData[key], product]
+    if(this.maxProductsSelected()) {
+      return [...this.state.formData[key]];
+    } else {
+      return [...this.state.formData[key], product];
+    }
   };
+
+  maxProductsSelected() {
+    let numProductsSelected = this.state.formData.productsSelected.length;
+    if( numProductsSelected >= this.state.bundle.maxNumProducts) return true
+  }
 
 
   // Select products to add to bundle

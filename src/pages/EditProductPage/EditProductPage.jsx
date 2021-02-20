@@ -25,7 +25,7 @@ class EditProductPage extends Component {
   render() {
     return(
       <div>
-        {this.props.user ? 
+        {this.props.location.state.user ? 
         <div id="withUser">
           <h1>Edit Product</h1>
           <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>

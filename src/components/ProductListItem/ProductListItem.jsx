@@ -18,8 +18,8 @@ function ProductListItem({storeProduct, handleDeleteProduct, handleUpdateProduct
           className='btn' 
           to={{pathname:'/admin/product/edit', 
           state: {
-            storeProduct, 
-            handleUpdateProduct
+            storeProduct,
+            user 
           }}}>
             Edit
         </Link>

@@ -5,7 +5,6 @@ import "./App.css";
 import * as storesAPI from "../../services/stores-api";
 import * as productsAPI from "../../services/products-api";
 import * as bundlesAPI from "../../services/bundles-api";
-import * as usersAPI from "../../services/users-api";
 
 import NavBar from "../../components/NavBar/NavBar";
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import styles from "./ShopBundlePage.css"
 
@@ -8,7 +8,7 @@ import {Form, Card, Row, Col, Button, Container} from 'react-bootstrap'
 class ShopBundlePage extends Component { 
   state = {
     invalidForm: true,
-
+    store: this.props.location.state.store,
     bundle: this.props.location.state.bundle,
     products: this.props.location.state.productsInBundle,
 
@@ -85,19 +85,23 @@ class ShopBundlePage extends Component {
   // if product in productsSelected, display count
 
   render() {
-    const {bundle, products} = this.state;
+    const {bundle, products, store, productsInBundle} = this.state;
     const {productsSelected} = this.state.formData;
 
     console.log("ShopBundlePage: ", products)
     return (
       <div className="bundle-builder">
-        <h1>{bundle.bundleName}</h1>
-        <h3>${bundle.price}</h3>
+        <div className="header">
+          <Button className="back-btn" onClick={this.props.history.goBack} variant="success" style={{ backgroundColor: 'pink' }} > Back to Bundles </Button>
+          <h1>{bundle.bundleName}</h1>
+          <h3>${bundle.price}</h3>
+        </div>
+
 
         <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
         <Row>
-
-          <Col>
+          <Col md={2}></Col>
+          <Col md={4}>
           {/* Products Menu */}
             {products.map((product,idx) => 
 
@@ -131,7 +135,7 @@ class ShopBundlePage extends Component {
           </Col>
 
 
-          <Col>
+          <Col md={4}>
             <h1>Your Bundle</h1>
             {productsSelected.map((selectedProduct, idx)=>
               <div className="shopping-bag">
@@ -163,6 +167,7 @@ class ShopBundlePage extends Component {
               }
 
           </Col>
+          <Col md={2}></Col>
         </Row>
         
         </Form>
@@ -172,4 +177,4 @@ class ShopBundlePage extends Component {
 
 }
 
-export default ShopBundlePage;
+export default withRouter(ShopBundlePage);

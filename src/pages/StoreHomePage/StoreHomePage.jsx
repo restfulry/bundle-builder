@@ -1,10 +1,10 @@
 import React, {Component, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
-import styles from './StoreHomePage.css'
+import { Button } from 'react-bootstrap';
+
+import './StoreHomePage.css';
 
 import * as storesAPI from "../../services/stores-api";
-
-import { Button } from 'react-bootstrap';
 
 class StoreHomePage extends Component {
   state={
@@ -35,8 +35,10 @@ class StoreHomePage extends Component {
     render() {
       return (
         <div>
+        <div className="header">
           <h1>Welcome to {this.state.store.storeName}</h1>
-          <Button variant="success" style={{ backgroundColor: 'pink' }} >
+        </div>
+          <Button className="btn" variant="success" style={{ backgroundColor: 'pink' }} >
             <Link className="link" to={{
                     pathname: '/shop/' + this.state.store.storeURL + '/bundles',
                     state: {

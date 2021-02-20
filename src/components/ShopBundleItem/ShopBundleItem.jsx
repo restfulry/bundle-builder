@@ -4,13 +4,8 @@ import { Link } from 'react-router-dom';
 import {Card, Button, Col} from 'react-bootstrap'
 
 function ShopBundleItem({bundle, store, products}) {
-
-  console.log("SHOPBUNDLEITEM BUNDLE", bundle)
-  console.log("SHOPBUNDLEITEM Product", products)
-  
   const productsInBundle = products.filter(product => bundle.eligibleProducts.includes(product._id))
   
-  console.log("SHOPBUNDLEITEM ProductsInBundle", productsInBundle)
   return(
         <Col class="col-lg-4 align-items-stretch">  
           <Card className="mx-auto card" style={{ width: '18rem', height: '12rem' }}>

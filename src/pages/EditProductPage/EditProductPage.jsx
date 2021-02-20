@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 class EditProductPage extends Component {
   state = {
     invalidForm: false,
-    formData: this.props.location.state.product
+    formData: this.props.location.state.storeProduct
   };
 
   formRef = React.createRef();

@@ -1,10 +1,16 @@
 h1 {
   color: black;
+  margin-top: -25px;
 }
 
 h2,
 h3 {
   font-family: "Sarabun", sans-serif;
+}
+
+.back-btn {
+  padding-top: 10px;
+  margin-right: 80%;
 }
 
 .productDisplay {
@@ -25,4 +31,9 @@ h3 {
 
 .shopping-bag {
   font-family: "Anton", sans-serif;
+}
+
+.header {
+  background-color: pink;
+  padding-bottom: 15px;
 }

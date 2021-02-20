@@ -14,9 +14,23 @@ function ProductListItem({storeProduct, handleDeleteProduct, handleUpdateProduct
       </div>
       {user ?
       <div className="panel-footer">
-        <Link className='btn' to={{pathname:'/admin/product/edit', state: {storeProduct, handleUpdateProduct}}}>Edit</Link>
+        <Link 
+          className='btn' 
+          to={{pathname:'/admin/product/edit', 
+          state: {
+            storeProduct, 
+            handleUpdateProduct
+          }}}>
+            Edit
+        </Link>
+
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <button className="btn" onClick={() => handleDeleteProduct(storeProduct._id)}>DELETE</button>
+
+        <button 
+          className="btn" 
+          onClick={() => handleDeleteProduct(storeProduct._id)}>
+            DELETE
+        </button>
       </div>
       : <div></div>}
     </div>

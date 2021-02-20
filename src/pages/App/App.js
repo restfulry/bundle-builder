@@ -263,21 +263,21 @@ class App extends Component {
           <Route
             exact
             path="/admin/products/new"
-            render={({ props }) => (
+            render={({ handleAddProduct }) => (
               <AddProductPage
                 user={this.state.user}
                 currentStore={this.state.currentStore}
-                handleAddProduct={this.handleAddProduct}
+                handleAddProduct={handleAddProduct}
               />
             )}
           />
           <Route
             exact
             path="/admin/products"
-            render={({ props }) => (
+            render={({ handleUpdateProduct, handleDeleteProduct }) => (
               <ProductIndexPage
-                handleUpdateProduct={this.handleUpdateProduct}
-                handleDeleteProduct={this.handleDeleteProduct}
+                handleUpdateProduct={handleUpdateProduct}
+                handleDeleteProduct={handleDeleteProduct}
                 storeProducts={this.state.storeProducts}
                 user={this.state.user}
                 currentStore={this.state.currentStore}
@@ -297,9 +297,9 @@ class App extends Component {
           <Route
             exact
             path="/admin/product/edit"
-            render={({ location }) => (
+            render={({ location, handleUpdateProduct }) => (
               <EditProductPage
-                handleUpdateProduct={this.handleUpdateProduct}
+                handleUpdateProduct={handleUpdateProduct}
                 storeProducts={this.state.storeProducts}
                 location={location}
               />

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import ShopBundleItem from '../../components/ShopBundleItem/ShopBundleItem'
 
-import {Row, Container} from 'react-bootstrap';
+import {Row, Container, Button} from 'react-bootstrap';
 
 function ShopBundleIndexPage({location}) {
   const store = location.state.selectedStore;
@@ -13,7 +13,9 @@ function ShopBundleIndexPage({location}) {
 
   return (
       <Container fluid="xl">
-      <h1>Bundles Index</h1>
+        <div className="header">
+          <h1>{store.storeName}'s Bundles</h1>
+        </div>
         <Row>
           {bundles.map(bundle => <ShopBundleItem key={bundle._id} bundle={bundle} store={store} products={products}/>)}
         </Row>
@@ -21,4 +23,4 @@ function ShopBundleIndexPage({location}) {
   )
 };
 
-export default ShopBundleIndexPage;
+export default withRouter(ShopBundleIndexPage);

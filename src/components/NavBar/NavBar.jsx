@@ -13,16 +13,22 @@ const NavBar = ({user, handleLogout}) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <NavDropdown.Item>
+              <Nav.Link>
                 <Link to={{pathname: "/admin/bundles", user}} className="NavBar-link">My Bundles</Link>
+              </Nav.Link>
             </NavDropdown.Item>
-            <Nav.Link>
-              <Link to="/admin/products" user={user} className="NavBar-link">My Products</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="" className="NavBar-link" onClick={handleLogout}>
-              LOG OUT
-              </Link>
-            </Nav.Link>
+            <NavDropdown.Item>
+              <Nav.Link>
+                <Link to={{pathname: "/admin/products", user}} className="NavBar-link">My Products</Link>
+              </Nav.Link>
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <Nav.Link>
+                <Link to="" className="NavBar-link" onClick={handleLogout}>
+                LOG OUT
+                </Link>
+              </Nav.Link>
+            </NavDropdown.Item>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -35,14 +41,20 @@ const NavBar = ({user, handleLogout}) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <NavDropdown.Item>
-              <Link to="/shop" className="NavBar-link">Shop</Link>
+              <Nav.Link>
+                <Link to="/shop" className="NavBar-link">Shop</Link>
+              </Nav.Link>
             </NavDropdown.Item>
-            <Nav.Link>
-              <Link to="/login" className="NavBar-link">Login to My Store</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/signup" className="NavBar-link">STORE SIGN UP</Link>
-            </Nav.Link>
+            <NavDropdown.Item>
+              <Nav.Link>
+                <Link to="/login" className="NavBar-link">Login to My Store</Link>
+              </Nav.Link>
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <Nav.Link>
+                <Link to="/signup" className="NavBar-link">STORE SIGN UP</Link>
+              </Nav.Link>
+            </NavDropdown.Item>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

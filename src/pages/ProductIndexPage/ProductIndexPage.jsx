@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductListItem from '../../components/ProductListItem/ProductListItem';
 
-function ProductIndexPage({user, currentStore, handleDeleteProduct, storeProducts}) {
+function ProductIndexPage({user, currentStore, handleDeleteProduct, handleUpdateProduct, storeProducts}) {
 
   console.log('ProductIndexPage storeProducts', storeProducts)
   console.log('ProductIndexPage currentStore', currentStore)
@@ -22,8 +22,9 @@ function ProductIndexPage({user, currentStore, handleDeleteProduct, storeProduct
         <div>
           {storeProducts.map(storeProduct => 
             <ProductListItem 
-            storeProduct={storeProduct}
-              handleDeleteProduct={handleDeleteProduct} 
+              storeProduct={storeProduct}
+              handleDeleteProduct={handleDeleteProduct}
+              handleUpdateProduct={handleUpdateProduct}
               key={storeProduct._id}
               user={user}
               />

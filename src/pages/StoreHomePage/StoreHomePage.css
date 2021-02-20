@@ -1,9 +1,8 @@
 .btn {
-  font-size: 3rem;
   padding-top: 25px;
 }
 
-link {
+.link {
   font-size: 3rem;
   color: black;
   font-family: "Sarabun", sans-serif;
@@ -11,5 +10,4 @@ link {
 
 .header {
   font-size: 5rem;
-  color: red;
 }

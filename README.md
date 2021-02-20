@@ -12,6 +12,10 @@ Shoppers can browse the stores and build their own bundles.
 
 ## App Screenshots
 
+![Home Page](screenshots/Bundler_Home.png)
+![Shop Bundle](screenshots/Bundler_BuildBundle.png)
+![Create Bundle](screenshots/Bundler_AddBundlePage.png)
+
 ## Technologies Used
 
 - MongoDB + Mongoose

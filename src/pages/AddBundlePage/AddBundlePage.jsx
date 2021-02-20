@@ -135,13 +135,8 @@ class AddBundlePage extends Component {
                   required
                 />
               </Form.Group>
-
-              <Form.Group controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
-
-              <Button variant="primary" type="submit" className="btn" disabled={this.state.invalidForm}>Add bundle
-              </Button>
+              {/* <Button variant="primary" type="submit" className="btn" disabled={this.state.invalidForm}>Add bundle
+              </Button> */}
             </Form>
             <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
     {/*           

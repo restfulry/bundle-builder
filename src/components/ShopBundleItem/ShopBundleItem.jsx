@@ -8,7 +8,7 @@ function ShopBundleItem({bundle, store, products}) {
   
   return(
         <Col class="col-lg-4 align-items-stretch">  
-          <Card className="mx-auto card" style={{ width: '18rem', height: '12rem' }}>
+          <Card className="mx-auto card" style={{ width: '20rem', height: '12rem' }}>
             <Card.Body className="cardBody">
               <Card.Title className="cardTitle">{bundle.bundleName}</Card.Title>
               

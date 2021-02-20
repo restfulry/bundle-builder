@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import styles from "./ShopBundlePage.css"
 
-import {Form, Card, Col, Button} from 'react-bootstrap'
+import {Form, Card, Row, Col, Button} from 'react-bootstrap'
 
 class ShopBundlePage extends Component { 
   state = {
@@ -21,7 +21,7 @@ class ShopBundlePage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // this.props.handleAddOrder(this.state.formData);
+    // TODO: this.props.handleAddOrder(this.state.formData);
   }
 
   handleChange = e => {
@@ -32,7 +32,7 @@ class ShopBundlePage extends Component {
 
     let value = this.updateProductsSelected(targetKey, targetValue)
 
-    console.log('e targetKey', targetKey);
+    console.log('products', this.state.products);
     console.log('e targetValue', targetValue);
     console.log('maxnUmProducts', this.state.bundle.maxNumProducts);
     
@@ -69,18 +69,35 @@ class ShopBundlePage extends Component {
     return qtySelected.length;
 
   }
+
+  getSelectedProductName(p, idx) {
+    let productsSelected = this.state.formData.productsSelected;
+    let selectedProductID = productsSelected[idx]
+
+    let productsCatalog = this.state.products;
+
+    let selectedProductName = productsCatalog.filter((product) => product._id === selectedProductID)[0].productName; 
+
+    console.log("getSelectedProductName", selectedProductName)
+
+    return selectedProductName;
+  }
   // if product in productsSelected, display count
 
   render() {
     const {bundle, products} = this.state;
+    const {productsSelected} = this.state.formData;
+
     console.log("ShopBundlePage: ", products)
     return (
       <div className="bundle-builder">
         <h1>Build Your Bundle</h1>
-        <h2>${bundle.price}</h2>
+        <h2>{bundle.bundleName}</h2>
+        <h3>${bundle.price}</h3>
 
         <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
-
+        <Row>
+          <Col>
           {products.map((product,idx) => 
 
             <div className="productDisplay" key={idx}>
@@ -108,45 +125,44 @@ class ShopBundlePage extends Component {
                   </Card.Link>
                 </Card.Body>
               </Card>
-
-
-
             </div>
           )}
+          </Col>
+          <Col>
+            <h1>Products Added</h1>
+            {productsSelected.map((selectedProduct, idx)=>
+              <div className="shopping-bag">
+                {this.getSelectedProductName(selectedProduct, idx)}
+              </div>
+            )}
 
-        {this.remainingChoices() === 0 ? 
-        <h3 className="btn-add-to-cart">
-            <Button
-              variant="success" 
-              type="submit" 
-              className="btn" 
-              disabled={this.state.invalidForm}>
-                All set! Add to Cart
-            </Button>
-          </h3>
-          :<div></div>
-        }
-        {this.remainingChoices() === 1 ?
-          <h3 className="btn-add-to-cart">
-            <Button
-              variant="outline-danger" 
-              type="submit" 
-              className="btn" 
-              disabled={true}>
-                Choose {this.remainingChoices()} More Item
-            </Button>
-          </h3>
-        : 
-          <h3 className="btn-add-to-cart">
-            <Button
-              variant="outline-danger" 
-              type="submit" 
-              className="btn" 
-              disabled={true}>
-                Choose {this.remainingChoices()} More Items
-            </Button>
-          </h3>
-        }
+
+          {/* Add to Cart Button */}
+              {this.remainingChoices() === 0 ? 
+              <h3 className="btn-add-to-cart">
+                  <Button
+                    variant="success" 
+                    type="submit" 
+                    className="btn" 
+                    disabled={this.state.invalidForm}>
+                      All set! Add to Cart
+                  </Button>
+                </h3>
+              :
+                <h3 className="btn-add-to-cart">
+                  <Button
+                    variant="outline-danger" 
+                    type="submit" 
+                    className="btn" 
+                    disabled={true}>
+                      Choose {this.remainingChoices()} More
+                  </Button>
+                </h3>
+              }
+
+          </Col>
+        </Row>
+        
         </Form>
       </div>
     )

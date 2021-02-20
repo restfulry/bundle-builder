@@ -12,8 +12,12 @@ h1 {
 
 .btn-add-to-cart {
   font-family: "Sarabun", sans-serif;
-  font-size: 3rem;
+  font-size: 2rem;
   border-radius: 50%;
   margin: 10px;
   padding-bottom: 25px;
+}
+
+.shopping-bag {
+  font-family: "Anton", sans-serif;
 }

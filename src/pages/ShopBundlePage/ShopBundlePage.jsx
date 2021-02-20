@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import styles from "./ShopBundlePage.css"
 
-import {Form, Card, Row, Col, Button, Container} from 'react-bootstrap'
+import {Form, Card, Row, Col, Button, Badge} from 'react-bootstrap'
 
 class ShopBundlePage extends Component { 
   state = {
@@ -75,7 +75,10 @@ class ShopBundlePage extends Component {
 
     return selectedProductName;
   }
-  // if product in productsSelected, display count
+
+  addToCartAlert() {
+    alert('Added to Cart!')
+  };
 
   render() {
     const {bundle, products, store, productsInBundle} = this.state;
@@ -117,7 +120,10 @@ class ShopBundlePage extends Component {
                         size="sm"
                         variant="dark"
                         >
-                        ADD ({this.productQtySelected(`${product._id}`)})
+                        ADD &nbsp;
+                          <Badge variant="light">
+                            {this.productQtySelected(`${product._id}`)}
+                          </Badge>
                       </Button>
                     </Card.Link>
                   </Card.Body>
@@ -142,7 +148,8 @@ class ShopBundlePage extends Component {
                     variant="success" 
                     type="submit" 
                     className="btn" 
-                    disabled={this.state.invalidForm}>
+                    disabled={this.state.invalidForm}
+                    onClick={this.addToCartAlert}>
                       All set! Add to Cart
                   </Button>
                 </h3>

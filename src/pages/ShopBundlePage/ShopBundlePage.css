@@ -2,6 +2,11 @@ h1 {
   color: black;
 }
 
+h2,
+h3 {
+  font-family: "Sarabun", sans-serif;
+}
+
 .productDisplay {
   font-family: "Sarabun", sans-serif;
 }

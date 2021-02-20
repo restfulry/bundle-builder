@@ -91,8 +91,7 @@ class ShopBundlePage extends Component {
     console.log("ShopBundlePage: ", products)
     return (
       <div className="bundle-builder">
-        <h1>Build Your Bundle</h1>
-        <h2>{bundle.bundleName}</h2>
+        <h1>{bundle.bundleName}</h1>
         <h3>${bundle.price}</h3>
 
         <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
@@ -129,7 +128,7 @@ class ShopBundlePage extends Component {
           )}
           </Col>
           <Col>
-            <h1>Products Added</h1>
+            <h1>Your Bundle</h1>
             {productsSelected.map((selectedProduct, idx)=>
               <div className="shopping-bag">
                 {this.getSelectedProductName(selectedProduct, idx)}
